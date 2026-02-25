@@ -187,11 +187,7 @@
       opacity: 0; transition: opacity .2s;
     }
     .card:hover .play-ov { opacity: 1; }
-    .play-circle {
-      width: 44px; height: 44px; background: rgba(255,255,255,.92);
-      border-radius: 50%; display: flex; align-items: center; justify-content: center;
-    }
-    .play-circle svg { width: 18px; height: 18px; color: #0d1117; margin-left: 2px; }
+    
     .card-body {
       padding: 14px 14px 12px;
       display: flex; flex-direction: column; gap: 8px; flex: 1;
@@ -410,13 +406,6 @@
           <div class="thumb">
             <img src="${thumb(r.videoId)}" alt="${r.title}" loading="lazy"
               onerror="this.style.visibility='hidden'"/>
-            <div class="play-ov">
-              <div class="play-circle">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M8 5v14l11-7z"/>
-                </svg>
-              </div>
-            </div>
           </div>
           <div class="card-body">
             <div class="card-title">${r.title}</div>
