@@ -1,450 +1,575 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en" data-theme="light" data-lang="en">
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>TL Simulation Recordings – Team 2</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    :root {
-      --accent:      #0ea5e9;
-      --accent-2:    #06b6d4;
-      --accent-glow: rgba(14,165,233,.18);
-    }
-    [data-theme="dark"] {
-      --bg:           #0d1117;
-      --surface:      #161b22;
-      --surface-2:    #1e2430;
-      --border:       #21262d;
-      --border-h:     #0ea5e9;
-      --text:         #e6edf3;
-      --text-2:       #8b949e;
-      --text-3:       #484f58;
-      --badge-bg:     rgba(14,165,233,.15);
-      --badge-txt:    #38bdf8;
-      --thumb-bg:     #1c2331;
-      --bottomnav-bg: rgba(13,17,23,.92);
-    }
-    [data-theme="light"] {
-      --bg:           #f0f4f8;
-      --surface:      #ffffff;
-      --surface-2:    #f6f8fa;
-      --border:       #d0d7de;
-      --border-h:     #0ea5e9;
-      --text:         #1f2328;
-      --text-2:       #57606a;
-      --text-3:       #afb8c1;
-      --badge-bg:     rgba(14,165,233,.1);
-      --badge-txt:    #0284c7;
-      --thumb-bg:     #dde3ea;
-      --bottomnav-bg: rgba(240,244,248,.92);
-    }
-
-    body {
-      font-family: 'Inter', sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      min-height: 100vh;
-      transition: background .25s, color .25s;
-    }
-
-    /* ══════════════════════════════
-        STICKY HEADER
-    ══════════════════════════════ */
-    .header {
-      position: sticky; top: 0; z-index: 100;
-      background: var(--bg);
-      border-bottom: 1px solid var(--border);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      padding: 13px 24px;
-      display: flex; align-items: center; gap: 16px;
-    }
-
-    .brand { display: flex; align-items: center; gap: 11px; flex-shrink: 0; }
-    .brand-icon {
-      width: 38px; height: 38px;
-      background: linear-gradient(135deg, var(--accent), var(--accent-2));
-      border-radius: 10px;
-      display: flex; align-items: center; justify-content: center;
-    }
-    .brand-icon svg { width: 19px; height: 19px; color: #fff; }
-    .brand-name { font-size: 16px; font-weight: 700; line-height: 1.2; white-space: nowrap; }
-    .brand-sub  { font-size: 12px; color: var(--text-2); }
-
-    /* desktop-only items inside header */
-    .header-divider {
-      width: 1px; height: 32px; background: var(--border); flex-shrink: 0;
-    }
-    .header-search { flex: 1; position: relative; min-width: 0; }
-    .header-search svg {
-      position: absolute; left: 13px; top: 50%;
-      transform: translateY(-50%);
-      width: 16px; height: 16px; color: var(--text-3); pointer-events: none;
-    }
-    .header-search input {
-      width: 100%;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 9px 14px 9px 40px;
-      color: var(--text); font-size: 14px;
-      font-family: 'Inter', sans-serif; outline: none;
-      transition: border-color .2s, box-shadow .2s;
-    }
-    .header-search input::placeholder { color: var(--text-3); }
-    .header-search input:focus {
-      border-color: var(--accent);
-      box-shadow: 0 0 0 3px var(--accent-glow);
-    }
-    .count-badge {
-      background: var(--badge-bg); color: var(--badge-txt);
-      font-size: 13px; font-weight: 600;
-      padding: 7px 14px; border-radius: 9px;
-      white-space: nowrap; flex-shrink: 0;
-    }
-    .theme-btn-header {
-      width: 38px; height: 38px; border-radius: 10px;
-      border: 1px solid var(--border);
-      background: var(--surface); color: var(--text-2);
-      cursor: pointer;
-      display: flex; align-items: center; justify-content: center;
-      transition: border-color .2s, color .2s; flex-shrink: 0;
-    }
-    .theme-btn-header:hover { border-color: var(--accent); color: var(--accent); }
-    .theme-btn-header svg { width: 17px; height: 17px; }
-
-    /* on mobile: hide desktop items from header */
-    @media (max-width: 759px) {
-      .header-divider,
-      .header-search,
-      .count-badge,
-      .theme-btn-header { display: none; }
-      .header { padding: 11px 16px; }
-      .brand-sub { display: none; }
-    }
-
-    /* ══════════════════════════════
-        MAIN CONTENT
-    ══════════════════════════════ */
-    .main {
-      padding: 20px 24px;
-      /* leave space for bottom navbar on mobile */
-    }
-    @media (max-width: 759px) {
-      .main { padding: 14px 14px 90px; }
-    }
-
-    /* ══════════════════════════════
-        RESPONSIVE GRID
-    ══════════════════════════════ */
-    .grid {
-      display: grid;
-      gap: 16px;
-      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-    }
-    @media (min-width: 1400px) { .grid { grid-template-columns: repeat(5, 1fr); } }
-    @media (min-width: 1100px) and (max-width: 1399px) { .grid { grid-template-columns: repeat(4, 1fr); } }
-    @media (min-width: 760px)  and (max-width: 1099px) { .grid { grid-template-columns: repeat(3, 1fr); } }
-    @media (min-width: 480px)  and (max-width: 759px)  { .grid { grid-template-columns: repeat(2, 1fr); gap: 12px; } }
-    @media (max-width: 479px)  { .grid { grid-template-columns: 1fr; gap: 10px; } }
-
-    /* ══════════════════════════════
-        CARD
-    ══════════════════════════════ */
-    .card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 14px; overflow: hidden;
-      display: flex; flex-direction: column;
-      transition: border-color .2s, box-shadow .2s, transform .2s;
-      position: relative;
-    }
-    .card:hover {
-      border-color: var(--border-h);
-      box-shadow: 0 8px 32px var(--accent-glow);
-      transform: translateY(-3px);
-    }
-    .card-num {
-      position: absolute; top: 10px; left: 10px; z-index: 2;
-      background: rgba(0,0,0,.55); color: #fff;
-      font-size: 11px; font-weight: 700;
-      padding: 3px 8px; border-radius: 6px;
-      backdrop-filter: blur(4px); letter-spacing: .4px;
-    }
-    .thumb {
-      width: 100%; aspect-ratio: 16/9;
-      background: var(--thumb-bg); overflow: hidden;
-      position: relative; flex-shrink: 0;
-    }
-    .thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
-    .play-ov {
-      position: absolute; inset: 0;
-      background: rgba(0,0,0,.3);
-      display: flex; align-items: center; justify-content: center;
-      opacity: 0; transition: opacity .2s;
-    }
-    .card:hover .play-ov { opacity: 1; }
-    
-    .card-body {
-      padding: 14px 14px 12px;
-      display: flex; flex-direction: column; gap: 8px; flex: 1;
-    }
-    .card-title { font-size: 15px; font-weight: 600; color: var(--text); line-height: 1.45; }
-    .card-date {
-      display: flex; align-items: center; gap: 6px;
-      font-size: 13px; color: var(--text-2);
-    }
-    .card-date svg { width: 13px; height: 13px; flex-shrink: 0; }
-    .btn-watch {
-      margin-top: auto;
-      display: flex; align-items: center; justify-content: center; gap: 7px;
-      width: 100%; padding: 10px;
-      background: linear-gradient(135deg, var(--accent), var(--accent-2));
-      color: #fff; border: none; border-radius: 9px;
-      font-size: 14px; font-weight: 600;
-      font-family: 'Inter', sans-serif;
-      cursor: pointer; text-decoration: none;
-      transition: opacity .18s, box-shadow .18s;
-    }
-    .btn-watch:hover { opacity: .88; box-shadow: 0 4px 18px var(--accent-glow); }
-    .btn-watch svg { width: 15px; height: 15px; }
-
-    /* ══════════════════════════════
-       EMPTY STATE
-    ══════════════════════════════ */
-    .empty {
-      grid-column: 1/-1; text-align: center; padding: 60px 20px;
-      color: var(--text-3);
-      border: 1px dashed var(--border); border-radius: 14px;
-      background: var(--surface); font-size: 15px;
-    }
-    .empty svg { width: 44px; height: 44px; margin: 0 auto 12px; display: block; opacity: .35; }
-
-    /* ══════════════════════════════
-       FOOTER (desktop)
-    ══════════════════════════════ */
-    .footer {
-      text-align: center; font-size: 13px; color: var(--text-3);
-      padding: 20px 24px 32px;
-      border-top: 1px solid var(--border); margin-top: 8px;
-    }
-    @media (max-width: 759px) { .footer { display: none; } }
-
-    /* ══════════════════════════════
-       BOTTOM NAVBAR  (mobile only)
-    ══════════════════════════════ */
-    .bottom-nav {
-      display: none; /* hidden on desktop */
-    }
-    @media (max-width: 759px) {
-      .bottom-nav {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        position: fixed;
-        bottom: 0; left: 0; right: 0;
-        z-index: 200;
-        padding: 10px 14px calc(10px + env(safe-area-inset-bottom));
-        background: var(--bottomnav-bg);
-        backdrop-filter: blur(16px);
-        -webkit-backdrop-filter: blur(16px);
-        border-top: 1px solid var(--border);
-      }
-
-      /* search inside bottom nav */
-      .bn-search { flex: 1; position: relative; }
-      .bn-search svg {
-        position: absolute; left: 12px; top: 50%;
-        transform: translateY(-50%);
-        width: 15px; height: 15px; color: var(--text-3); pointer-events: none;
-      }
-      .bn-search input {
-        width: 100%;
-        background: var(--surface-2);
-        border: 1px solid var(--border);
-        border-radius: 10px;
-        padding: 10px 12px 10px 36px;
-        color: var(--text); font-size: 14px;
-        font-family: 'Inter', sans-serif; outline: none;
-        transition: border-color .2s, box-shadow .2s;
-      }
-      .bn-search input::placeholder { color: var(--text-3); }
-      .bn-search input:focus {
-        border-color: var(--accent);
-        box-shadow: 0 0 0 3px var(--accent-glow);
-      }
-
-      /* theme toggle inside bottom nav */
-      .theme-btn-bn {
-        width: 44px; height: 44px; flex-shrink: 0;
-        border-radius: 10px;
-        border: 1px solid var(--border);
-        background: var(--surface-2); color: var(--text-2);
-        cursor: pointer;
-        display: flex; align-items: center; justify-content: center;
-        transition: border-color .2s, color .2s;
-      }
-      .theme-btn-bn:hover { border-color: var(--accent); color: var(--accent); }
-      .theme-btn-bn svg { width: 18px; height: 18px; }
-    }
-
-    /* sun/moon icon logic — applies to BOTH toggle buttons */
-    .icon-sun  { display: none; }
-    .icon-moon { display: block; }
-    [data-theme="light"] .icon-sun  { display: block; }
-    [data-theme="light"] .icon-moon { display: none; }
-
-    ::-webkit-scrollbar { width: 5px; }
-    ::-webkit-scrollbar-track { background: transparent; }
-    ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
-  </style>
+  <title>Team 2 Seoul · FSSE RevoU</title>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
 
-  <!-- ── STICKY HEADER ── -->
-  <header class="header">
-    <div class="brand">
-      <div class="brand-icon">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-          <path d="M4 6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6zm10 6-5-3v6l5-3z"/>
-        </svg>
+  <!-- ═══ NAVBAR ═══ -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-inner">
+      <a href="#home" class="nav-brand">
+        <div class="brand-mark">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M12 2a10 10 0 1 0 0 20A10 10 0 0 0 12 2zm0 3a3 3 0 1 1 0 6 3 3 0 0 1 0-6zm0 14.2a7.2 7.2 0 0 1-6-3.22c.03-1.99 4-3.08 6-3.08s5.97 1.09 6 3.08a7.2 7.2 0 0 1-6 3.22z"/></svg>
+        </div>
+        <div class="brand-text">
+          <span class="brand-name">Team 2</span>
+          <span class="brand-sub">FSSE Seoul</span>
+        </div>
+      </a>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#about"   class="nav-link" data-i18n="nav.about">About</a></li>
+        <li><a href="#materi"  class="nav-link" data-i18n="nav.materi">Materials</a></li>
+        <li><a href="#game"    class="nav-link" data-i18n="nav.game">Quiz</a></li>
+
+        <li><a href="recordings.html" class="nav-link nav-rec" data-i18n="nav.recordings">Recordings ↗</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <div class="lang-switcher" id="langSwitcher">
+          <button class="lang-btn active" data-lang="en" onclick="setLang('en')">EN</button>
+          <button class="lang-btn"        data-lang="id" onclick="setLang('id')">ID</button>
+        </div>
+        <button class="theme-btn-nav" onclick="toggleTheme()" title="Toggle theme">
+          <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"/></svg>
+          <svg class="icon-sun"  xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m8.66-9h-1M4.34 12h-1m15.07-6.07-.71.71M6.34 17.66l-.71.71m12.02 0-.71-.71M6.34 6.34l-.71-.71M12 7a5 5 0 1 0 0 10A5 5 0 0 0 12 7z"/></svg>
+        </button>
+        <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button>
       </div>
-      <div>
-        <div class="brand-name">TL Simulation Recordings</div>
-        <div class="brand-sub">Team 2</div>
-      </div>
     </div>
-
-    <!-- desktop only -->
-    <div class="header-divider"></div>
-    <div class="header-search">
-      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-          d="M21 21l-4.35-4.35M17 11A6 6 0 1 1 5 11a6 6 0 0 1 12 0z"/>
-      </svg>
-      <input id="searchDesktop" type="text" placeholder="Cari judul rekaman…" oninput="syncSearch(this)"/>
-    </div>
-    <div class="count-badge"><span id="totalCount">0</span> rekaman</div>
-    <button class="theme-btn-header" onclick="toggleTheme()" title="Toggle theme">
-      <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-          d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"/>
-      </svg>
-      <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-          d="M12 3v1m0 16v1m8.66-9h-1M4.34 12h-1m15.07-6.07-.71.71M6.34 17.66l-.71.71m12.02 0-.71-.71M6.34 6.34l-.71-.71M12 7a5 5 0 1 0 0 10A5 5 0 0 0 12 7z"/>
-      </svg>
-    </button>
-  </header>
-
-  <!-- ── MAIN ── -->
-  <main class="main">
-    <div class="grid" id="cardGrid"></div>
-  </main>
-
-  <footer class="footer">Happy Watching Guys!</footer>
-
-  <!-- ── BOTTOM NAVBAR (mobile) ── -->
-  <nav class="bottom-nav">
-    <div class="bn-search">
-      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-          d="M21 21l-4.35-4.35M17 11A6 6 0 1 1 5 11a6 6 0 0 1 12 0z"/>
-      </svg>
-      <input id="searchMobile" type="text" placeholder="Cari rekaman…" oninput="syncSearch(this)"/>
-    </div>
-    <button class="theme-btn-bn" onclick="toggleTheme()" title="Toggle theme">
-      <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-          d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"/>
-      </svg>
-      <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-          d="M12 3v1m0 16v1m8.66-9h-1M4.34 12h-1m15.07-6.07-.71.71M6.34 17.66l-.71.71m12.02 0-.71-.71M6.34 6.34l-.71-.71M12 7a5 5 0 1 0 0 10A5 5 0 0 0 12 7z"/>
-      </svg>
-    </button>
   </nav>
 
-  <script>
-    const recordings = [
-      { date: "25 Feb 2026", title: "Code Editor & Markdown", link: "https://youtu.be/y7OiHn0ZtJo", videoId: "y7OiHn0ZtJo" },
-      { date: "28 Feb 2026", title: "Terminal, CLI, and GIT", link: "https://youtu.be/fQD3B3TPdo0", videoId: "fQD3B3TPdo0" },
-      // { date: "27 Feb 2026", title: "HTML & CSS Basics",            link: "https://youtu.be/dQw4w9WgXcQ", videoId: "dQw4w9WgXcQ" },
-      // { date: "28 Feb 2026", title: "JavaScript Essentials",        link: "https://youtu.be/dQw4w9WgXcQ", videoId: "dQw4w9WgXcQ" },
-      // { date: "01 Mar 2026", title: "React Introduction & JSX",     link: "https://youtu.be/dQw4w9WgXcQ", videoId: "dQw4w9WgXcQ" },
-      // { date: "03 Mar 2026", title: "State Management with Hooks",  link: "https://youtu.be/dQw4w9WgXcQ", videoId: "dQw4w9WgXcQ" },
-      // { date: "05 Mar 2026", title: "REST API & Fetch",             link: "https://youtu.be/dQw4w9WgXcQ", videoId: "dQw4w9WgXcQ" },
-      // { date: "07 Mar 2026", title: "Database & SQL Basics",        link: "https://youtu.be/dQw4w9WgXcQ", videoId: "dQw4w9WgXcQ" },
-      // { date: "10 Mar 2026", title: "Authentication & JWT",         link: "https://youtu.be/dQw4w9WgXcQ", videoId: "dQw4w9WgXcQ" },
-      // { date: "12 Mar 2026", title: "Deployment & CI/CD Overview",  link: "https://youtu.be/dQw4w9WgXcQ", videoId: "dQw4w9WgXcQ" },
-    ];
+  <!-- mobile menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#about"          class="mob-link" onclick="toggleMenu()" data-i18n="nav.about">About</a>
+    <a href="#materi"         class="mob-link" onclick="toggleMenu()" data-i18n="nav.materi">Materials</a>
+    <a href="#game"           class="mob-link" onclick="toggleMenu()" data-i18n="nav.game">Quiz</a>
 
-    function thumb(id) {
-      return `https://img.youtube.com/vi/${id}/mqdefault.jpg`;
-    }
+    <a href="recordings.html" class="mob-link" data-i18n="nav.recordings">Recordings</a>
+    <div class="mob-lang">
+      <button class="lang-btn active" data-lang="en" onclick="setLang('en');toggleMenu()">EN</button>
+      <button class="lang-btn"        data-lang="id" onclick="setLang('id');toggleMenu()">ID</button>
+    </div>
+  </div>
 
-    function renderCards(data) {
-      const grid = document.getElementById('cardGrid');
-      document.getElementById('totalCount').textContent = data.length;
-      if (!data.length) {
-        grid.innerHTML = `
-          <div class="empty">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
-                d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
-            </svg>
-            Rekamannya gaada guyss!
-          </div>`;
-        return;
-      }
-      grid.innerHTML = data.map((r, i) => `
-        <div class="card">
-          <div class="card-num">#${String(i + 1).padStart(2, '0')}</div>
-          <div class="thumb">
-            <img src="${thumb(r.videoId)}" alt="${r.title}" loading="lazy"
-              onerror="this.style.visibility='hidden'"/>
+  <!-- ═══ SCROLL SNAP CONTAINER ═══ -->
+  <main id="snap-main">
+
+  <!-- ═══ HERO — two-column ═══ -->
+  <section id="home" class="hero">
+    <div class="hero-inner">
+
+      <div class="hero-left">
+        <div class="hero-eyebrow">
+          <span class="eyebrow-dot"></span>
+          FSSE RevoU &nbsp;·&nbsp; Section Seoul
+        </div>
+        <h1 class="hero-heading">
+          <span data-i18n="hero.title">TEAM 2</span>
+        </h1>
+        <p class="hero-sub" data-i18n="hero.sub">Recordings, materials, and quiz — all in one place, built for you.</p>
+        <div class="hero-ctas">
+          <a href="recordings.html" class="btn-primary">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M8 5v14l11-7z"/></svg>
+            <span data-i18n="hero.cta1">Watch Recordings</span>
+          </a>
+          <a href="#materi" class="btn-ghost">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="16" height="16"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+            <span data-i18n="hero.cta2">Browse Materials</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="hero-right">
+        <a href="recordings.html" class="hcard">
+          <div class="hcard-icon hcard-icon-rec">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M8 5v14l11-7z"/></svg>
           </div>
-          <div class="card-body">
-            <div class="card-title">${r.title}</div>
-            <div class="card-date">
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                  d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
-              </svg>
-              ${r.date}
+          <div class="hcard-body">
+            <span class="hcard-title" data-i18n="hero.feat.rec">Recordings</span>
+            <span class="hcard-sub" data-i18n="hero.feat.rec.sub">Replay past sessions</span>
+          </div>
+          <svg class="hcard-arrow" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="16" height="16"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+        </a>
+        <a href="#materi" class="hcard">
+          <div class="hcard-icon hcard-icon-materi">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="20" height="20"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+          </div>
+          <div class="hcard-body">
+            <span class="hcard-title" data-i18n="hero.feat.materi">Materials</span>
+            <span class="hcard-sub" data-i18n="hero.feat.materi.sub">Notes &amp; key points</span>
+          </div>
+          <svg class="hcard-arrow" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="16" height="16"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+        </a>
+        <a href="#game" class="hcard">
+          <div class="hcard-icon hcard-icon-quiz">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="20" height="20"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+          </div>
+          <div class="hcard-body">
+            <span class="hcard-title" data-i18n="hero.feat.quiz">Quiz</span>
+            <span class="hcard-sub" data-i18n="hero.feat.quiz.sub">Test your skills</span>
+          </div>
+          <svg class="hcard-arrow" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="16" height="16"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══ ABOUT ═══ -->
+  <section id="about" class="section fade-in-section">
+    <div class="section-inner">
+      <div class="section-label">
+        <span class="section-num">01</span>
+        <span class="section-rule"></span>
+        <span class="section-tag-txt" data-i18n="about.tag">Who We Are</span>
+      </div>
+      <h2 class="section-heading" data-i18n="about.title">About</h2>
+
+      <!-- ── All Members Grid (TL first, then students) ── -->
+      <div class="about-persons-grid">
+        <div class="about-expanded-slot"></div>
+        <div class="about-rows-wrapper">
+        <div class="about-row" data-row-order="0">
+        <div class="person-card" id="pcard-tl" data-order="0" onclick="selectPerson('tl')">
+          <div class="pcard-compact">
+            <div class="pcard-avatar" style="background:url('img/jek.png') center/cover,linear-gradient(135deg,#ffde3d 0%,#6366f1 100%)"></div>
+            <div class="pcard-compact-body">
+              <span class="pcard-name">Muhammad Irfan Dzaky</span>
+              <span class="pcard-role">Team Lead</span>
             </div>
-            <a href="${r.link}" target="_blank" rel="noopener" class="btn-watch">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M8 5v14l11-7z"/>
-              </svg>
-              Tonton Rekaman
-            </a>
+          </div>
+          <div class="pcard-detail">
+            <div class="pd-top">
+              <div class="pd-photo"><img src="img/jek.png" alt="Muhammad Irfan Dzaky" class="about-photo"></div>
+              <div class="pd-head">
+                <h3 class="about-name">Muhammad Irfan Dzaky</h3>
+                <p class="about-bio">Still somewhere between junior and figuring it out.</p>
+                <div class="pd-socials">
+                  <a href="mailto:irfndzky@gmail.com" class="social-link" title="Email" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="15" height="15"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg><span class="social-label">irfndzky@gmail.com</span></a>
+                  <a href="https://github.com/MuhammadIrfanDzaky" class="social-link" title="GitHub" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="15" height="15"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"/></svg><span class="social-label">MuhammadIrfanDzaky</span></a>
+                  <a href="https://www.linkedin.com/in/muhammad-irfan-dzaky/" class="social-link" title="LinkedIn" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="15" height="15"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg><span class="social-label">muhammad-irfan-dzaky</span></a>
+                </div>
+              </div>
+            </div>
+            <div class="about-stats">
+              <div class="stat-item"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="16" height="16"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg><div><span class="stat-label">Domicile</span><span class="stat-val">Binjai</span></div></div>
+              <div class="stat-item"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="16" height="16"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg><div><span class="stat-label">Occupation</span><span class="stat-val">Software Engineer / Freelancer</span></div></div>
+              <div class="stat-item"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="16" height="16"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg><div><span class="stat-label">Hobby</span><span class="stat-val">Gaming</span></div></div>
+              <div class="stat-item"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="16" height="16"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg><div><span class="stat-label">Motto</span><span class="stat-val">It Is What It Is</span></div></div>
+            </div>
           </div>
         </div>
-      `).join('');
-    }
+        <div class="person-card" id="pcard-s01" data-order="1" onclick="selectPerson('s01')">
+          <div class="pcard-compact">
+            <div class="pcard-avatar" style="background:linear-gradient(135deg,#f472b6 0%,#9333ea 100%)">01</div>
+            <div class="pcard-compact-body">
+              <span class="pcard-name">Abdullah Fadhil</span>
+              <span class="pcard-role">Student</span>
+            </div>
+          </div>
+          <div class="pcard-detail">
+            <div class="pd-top">
+              <div class="pd-photo"><div class="photo-placeholder"><span>01</span></div></div>
+              <div class="pd-head">
+                <h3 class="about-name">Abdullah Fadhil</h3>
+                <p class="about-bio">Full Stack Software Engineering student at RevoU.</p>
+                <div class="pd-socials">
+                  <a href="#" class="social-link" title="Email" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="15" height="15"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg><span class="social-label">–</span></a>
+                  <a href="#" class="social-link" title="GitHub" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="15" height="15"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"/></svg><span class="social-label">–</span></a>
+                  <a href="#" class="social-link" title="LinkedIn" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="15" height="15"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg><span class="social-label">–</span></a>
+                </div>
+              </div>
+            </div>
+            <div class="about-stats">
+              <div class="stat-item"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="16" height="16"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg><div><span class="stat-label">Domicile</span><span class="stat-val">–</span></div></div>
+              <div class="stat-item"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="16" height="16"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg><div><span class="stat-label">Occupation</span><span class="stat-val">–</span></div></div>
+              <div class="stat-item"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="16" height="16"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg><div><span class="stat-label">Hobby</span><span class="stat-val">–</span></div></div>
+              <div class="stat-item"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="16" height="16"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg><div><span class="stat-label">Motto</span><span class="stat-val">–</span></div></div>
+            </div>
+          </div>
+        </div>
+        <div class="person-card" id="pcard-s02" data-order="2" onclick="selectPerson('s02')">
+          <div class="pcard-compact">
+            <div class="pcard-avatar" style="background:linear-gradient(135deg,#34d399 0%,#06b6d4 100%)">02</div>
+            <div class="pcard-compact-body">
+              <span class="pcard-name">Alexander</span>
+              <span class="pcard-role">Student</span>
+            </div>
+          </div>
+          <div class="pcard-detail">
+            <div class="pd-top">
+              <div class="pd-photo"><div class="photo-placeholder"><span>02</span></div></div>
+              <div class="pd-head">
+                <h3 class="about-name">Alexander</h3>
+                <p class="about-bio">Full Stack Software Engineering student at RevoU.</p>
+                <div class="pd-socials">
+                  <a href="#" class="social-link" title="Email" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="15" height="15"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg><span class="social-label">–</span></a>
+                  <a href="#" class="social-link" title="GitHub" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="15" height="15"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"/></svg><span class="social-label">–</span></a>
+                  <a href="#" class="social-link" title="LinkedIn" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="15" height="15"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg><span class="social-label">–</span></a>
+                </div>
+              </div>
+            </div>
+            <div class="about-stats">
+              <div class="stat-item"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="16" height="16"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg><div><span class="stat-label">Domicile</span><span class="stat-val">-</span></div></div>
+              <div class="stat-item"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="16" height="16"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg><div><span class="stat-label">Occupation</span><span class="stat-val">-</span></div></div>
+              <div class="stat-item"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="16" height="16"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg><div><span class="stat-label">Hobby</span><span class="stat-val">-</span></div></div>
+              <div class="stat-item"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="16" height="16"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg><div><span class="stat-label">Motto</span><span class="stat-val">-</span></div></div>
+            </div>
+          </div>
+        </div>
+        <div class="person-card" id="pcard-s03" data-order="3" onclick="selectPerson('s03')">
+          <div class="pcard-compact">
+            <div class="pcard-avatar" style="background:linear-gradient(135deg,#fb923c 0%,#ef4444 100%)">03</div>
+            <div class="pcard-compact-body">
+              <span class="pcard-name">Calvin Marcellino</span>
+              <span class="pcard-role">Student</span>
+            </div>
+          </div>
+          <div class="pcard-detail">
+            <div class="pd-top">
+              <div class="pd-photo"><div class="photo-placeholder"><span>03</span></div></div>
+              <div class="pd-head">
+                <h3 class="about-name">Calvin Marcellino</h3>
+                <p class="about-bio">Full Stack Software Engineering student at RevoU.</p>
+                <div class="pd-socials">
+                  <a href="#" class="social-link" title="Email" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="15" height="15"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg><span class="social-label">–</span></a>
+                  <a href="#" class="social-link" title="GitHub" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="15" height="15"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"/></svg><span class="social-label">–</span></a>
+                  <a href="#" class="social-link" title="LinkedIn" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="15" height="15"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg><span class="social-label">–</span></a>
+                </div>
+              </div>
+            </div>
+            <div class="about-stats">
+              <div class="stat-item"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="16" height="16"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg><div><span class="stat-label">Domicile</span><span class="stat-val">-</span></div></div>
+              <div class="stat-item"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="16" height="16"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg><div><span class="stat-label">Occupation</span><span class="stat-val">-</span></div></div>
+              <div class="stat-item"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="16" height="16"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg><div><span class="stat-label">Hobby</span><span class="stat-val">-</span></div></div>
+              <div class="stat-item"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="16" height="16"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg><div><span class="stat-label">Motto</span><span class="stat-val">-</span></div></div>
+            </div>
+          </div>
+        </div>
+        <div class="person-card" id="pcard-s04" data-order="4" onclick="selectPerson('s04')">
+          <div class="pcard-compact">
+            <div class="pcard-avatar" style="background:linear-gradient(135deg,#818cf8 0%,#38bdf8 100%)">04</div>
+            <div class="pcard-compact-body">
+              <span class="pcard-name">Christopher Adam Pandawa</span>
+              <span class="pcard-role">Student</span>
+            </div>
+          </div>
+          <div class="pcard-detail">
+            <div class="pd-top">
+              <div class="pd-photo"><div class="photo-placeholder"><span>04</span></div></div>
+              <div class="pd-head">
+                <h3 class="about-name">Christopher Adam Pandawa</h3>
+                <p class="about-bio">Full Stack Software Engineering student at RevoU.</p>
+                <div class="pd-socials">
+                  <a href="#" class="social-link" title="Email" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="15" height="15"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg><span class="social-label">–</span></a>
+                  <a href="#" class="social-link" title="GitHub" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="15" height="15"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"/></svg><span class="social-label">–</span></a>
+                  <a href="#" class="social-link" title="LinkedIn" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="15" height="15"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg><span class="social-label">–</span></a>
+                </div>
+              </div>
+            </div>
+            <div class="about-stats">
+              <div class="stat-item"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="16" height="16"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg><div><span class="stat-label">Domicile</span><span class="stat-val">-</span></div></div>
+              <div class="stat-item"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="16" height="16"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg><div><span class="stat-label">Occupation</span><span class="stat-val">-</span></div></div>
+              <div class="stat-item"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="16" height="16"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg><div><span class="stat-label">Hobby</span><span class="stat-val">-</span></div></div>
+              <div class="stat-item"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="16" height="16"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg><div><span class="stat-label">Motto</span><span class="stat-val">-</span></div></div>
+            </div>
+          </div>
+        </div>
+        <div class="person-card" id="pcard-s05" data-order="5" onclick="selectPerson('s05')">
+          <div class="pcard-compact">
+            <div class="pcard-avatar" style="background:linear-gradient(135deg,#4ade80 0%,#facc15 100%)">05</div>
+            <div class="pcard-compact-body">
+              <span class="pcard-name">Edward Yunkian Janitra</span>
+              <span class="pcard-role">Student</span>
+            </div>
+          </div>
+          <div class="pcard-detail">
+            <div class="pd-top">
+              <div class="pd-photo"><div class="photo-placeholder"><span>05</span></div></div>
+              <div class="pd-head">
+                <h3 class="about-name">Edward Yunkian Janitra</h3>
+                <p class="about-bio">Full Stack Software Engineering student at RevoU.</p>
+                <div class="pd-socials">
+                  <a href="#" class="social-link" title="Email" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="15" height="15"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg><span class="social-label">–</span></a>
+                  <a href="#" class="social-link" title="GitHub" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="15" height="15"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"/></svg><span class="social-label">–</span></a>
+                  <a href="#" class="social-link" title="LinkedIn" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="15" height="15"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg><span class="social-label">–</span></a>
+                </div>
+              </div>
+            </div>
+            <div class="about-stats">
+              <div class="stat-item"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="16" height="16"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg><div><span class="stat-label">Domicile</span><span class="stat-val">-</span></div></div>
+              <div class="stat-item"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="16" height="16"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg><div><span class="stat-label">Occupation</span><span class="stat-val">-</span></div></div>
+              <div class="stat-item"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="16" height="16"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg><div><span class="stat-label">Hobby</span><span class="stat-val">-</span></div></div>
+              <div class="stat-item"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="16" height="16"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg><div><span class="stat-label">Motto</span><span class="stat-val">-</span></div></div>
+            </div>
+          </div>
+        </div>
+        </div><!-- end about-row top -->
+        <div class="about-row" data-row-order="1">
+        <div class="person-card" id="pcard-s06" data-order="6" onclick="selectPerson('s06')">
+          <div class="pcard-compact">
+            <div class="pcard-avatar" style="background:linear-gradient(135deg,#f97316 0%,#a855f7 100%)">06</div>
+            <div class="pcard-compact-body">
+              <span class="pcard-name">Jody Arrazy Suwitapradja</span>
+              <span class="pcard-role">Student</span>
+            </div>
+          </div>
+          <div class="pcard-detail">
+            <div class="pd-top">
+              <div class="pd-photo"><div class="photo-placeholder"><span>06</span></div></div>
+              <div class="pd-head">
+                <h3 class="about-name">Jody Arrazy Suwitapradja</h3>
+                <p class="about-bio">Full Stack Software Engineering student at RevoU.</p>
+                <div class="pd-socials">
+                  <a href="#" class="social-link" title="Email" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="15" height="15"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg><span class="social-label">–</span></a>
+                  <a href="#" class="social-link" title="GitHub" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="15" height="15"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"/></svg><span class="social-label">–</span></a>
+                  <a href="#" class="social-link" title="LinkedIn" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="15" height="15"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg><span class="social-label">–</span></a>
+                </div>
+              </div>
+            </div>
+            <div class="about-stats">
+              <div class="stat-item"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="16" height="16"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg><div><span class="stat-label">Domicile</span><span class="stat-val">-</span></div></div>
+              <div class="stat-item"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="16" height="16"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg><div><span class="stat-label">Occupation</span><span class="stat-val">-</span></div></div>
+              <div class="stat-item"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="16" height="16"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg><div><span class="stat-label">Hobby</span><span class="stat-val">-</span></div></div>
+              <div class="stat-item"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="16" height="16"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg><div><span class="stat-label">Motto</span><span class="stat-val">-</span></div></div>
+            </div>
+          </div>
+        </div>
+        <div class="person-card" id="pcard-s07" data-order="7" onclick="selectPerson('s07')">
+          <div class="pcard-compact">
+            <div class="pcard-avatar" style="background:linear-gradient(135deg,#22d3ee 0%,#6366f1 100%)">07</div>
+            <div class="pcard-compact-body">
+              <span class="pcard-name">Kevin Langga</span>
+              <span class="pcard-role">Student</span>
+            </div>
+          </div>
+          <div class="pcard-detail">
+            <div class="pd-top">
+              <div class="pd-photo"><div class="photo-placeholder"><span>07</span></div></div>
+              <div class="pd-head">
+                <h3 class="about-name">Kevin Langga</h3>
+                <p class="about-bio">Full Stack Software Engineering student at RevoU.</p>
+                <div class="pd-socials">
+                  <a href="#" class="social-link" title="Email" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="15" height="15"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg><span class="social-label">–</span></a>
+                  <a href="#" class="social-link" title="GitHub" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="15" height="15"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"/></svg><span class="social-label">–</span></a>
+                  <a href="#" class="social-link" title="LinkedIn" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="15" height="15"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg><span class="social-label">–</span></a>
+                </div>
+              </div>
+            </div>
+            <div class="about-stats">
+              <div class="stat-item"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="16" height="16"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg><div><span class="stat-label">Domicile</span><span class="stat-val">-</span></div></div>
+              <div class="stat-item"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="16" height="16"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg><div><span class="stat-label">Occupation</span><span class="stat-val">-</span></div></div>
+              <div class="stat-item"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="16" height="16"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg><div><span class="stat-label">Hobby</span><span class="stat-val">-</span></div></div>
+              <div class="stat-item"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="16" height="16"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg><div><span class="stat-label">Motto</span><span class="stat-val">-</span></div></div>
+            </div>
+          </div>
+        </div>
+        <div class="person-card" id="pcard-s08" data-order="8" onclick="selectPerson('s08')">
+          <div class="pcard-compact">
+            <div class="pcard-avatar" style="background:linear-gradient(135deg,#fb7185 0%,#fbbf24 100%)">08</div>
+            <div class="pcard-compact-body">
+              <span class="pcard-name">Michelle Hiu</span>
+              <span class="pcard-role">Student</span>
+            </div>
+          </div>
+          <div class="pcard-detail">
+            <div class="pd-top">
+              <div class="pd-photo"><div class="photo-placeholder"><span>08</span></div></div>
+              <div class="pd-head">
+                <h3 class="about-name">Michelle Hiu</h3>
+                <p class="about-bio">Full Stack Software Engineering student at RevoU.</p>
+                <div class="pd-socials">
+                  <a href="#" class="social-link" title="Email" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="15" height="15"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg><span class="social-label">–</span></a>
+                  <a href="#" class="social-link" title="GitHub" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="15" height="15"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"/></svg><span class="social-label">–</span></a>
+                  <a href="#" class="social-link" title="LinkedIn" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="15" height="15"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg><span class="social-label">–</span></a>
+                </div>
+              </div>
+            </div>
+            <div class="about-stats">
+              <div class="stat-item"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="16" height="16"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg><div><span class="stat-label">Domicile</span><span class="stat-val">-</span></div></div>
+              <div class="stat-item"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="16" height="16"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg><div><span class="stat-label">Occupation</span><span class="stat-val">-</span></div></div>
+              <div class="stat-item"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="16" height="16"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg><div><span class="stat-label">Hobby</span><span class="stat-val">-</span></div></div>
+              <div class="stat-item"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="16" height="16"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg><div><span class="stat-label">Motto</span><span class="stat-val">-</span></div></div>
+            </div>
+          </div>
+        </div>
+        <div class="person-card" id="pcard-s09" data-order="9" onclick="selectPerson('s09')">
+          <div class="pcard-compact">
+            <div class="pcard-avatar" style="background:linear-gradient(135deg,#a3e635 0%,#10b981 100%)">09</div>
+            <div class="pcard-compact-body">
+              <span class="pcard-name">Muhammad Rizki Hardita</span>
+              <span class="pcard-role">Student</span>
+            </div>
+          </div>
+          <div class="pcard-detail">
+            <div class="pd-top">
+              <div class="pd-photo"><div class="photo-placeholder"><span>09</span></div></div>
+              <div class="pd-head">
+                <h3 class="about-name">Muhammad Rizki Hardita</h3>
+                <p class="about-bio">Full Stack Software Engineering student at RevoU.</p>
+                <div class="pd-socials">
+                  <a href="#" class="social-link" title="Email" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="15" height="15"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg><span class="social-label">–</span></a>
+                  <a href="#" class="social-link" title="GitHub" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="15" height="15"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"/></svg><span class="social-label">–</span></a>
+                  <a href="#" class="social-link" title="LinkedIn" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="15" height="15"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg><span class="social-label">–</span></a>
+                </div>
+              </div>
+            </div>
+            <div class="about-stats">
+              <div class="stat-item"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="16" height="16"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg><div><span class="stat-label">Domicile</span><span class="stat-val">-</span></div></div>
+              <div class="stat-item"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="16" height="16"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg><div><span class="stat-label">Occupation</span><span class="stat-val">-</span></div></div>
+              <div class="stat-item"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="16" height="16"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg><div><span class="stat-label">Hobby</span><span class="stat-val">-</span></div></div>
+              <div class="stat-item"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="16" height="16"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg><div><span class="stat-label">Motto</span><span class="stat-val">-</span></div></div>
+            </div>
+          </div>
+        </div>
+        <div class="person-card" id="pcard-s10" data-order="10" onclick="selectPerson('s10')">
+          <div class="pcard-compact">
+            <div class="pcard-avatar" style="background:linear-gradient(135deg,#c084fc 0%,#f43f5e 100%)">10</div>
+            <div class="pcard-compact-body">
+              <span class="pcard-name">Rahmat Yudi Wibowo</span>
+              <span class="pcard-role">Student</span>
+            </div>
+          </div>
+          <div class="pcard-detail">
+            <div class="pd-top">
+              <div class="pd-photo"><div class="photo-placeholder"><span>10</span></div></div>
+              <div class="pd-head">
+                <h3 class="about-name">Rahmat Yudi Wibowo</h3>
+                <p class="about-bio">Full Stack Software Engineering student at RevoU.</p>
+                <div class="pd-socials">
+                  <a href="#" class="social-link" title="Email" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="15" height="15"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg><span class="social-label">–</span></a>
+                  <a href="#" class="social-link" title="GitHub" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="15" height="15"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"/></svg><span class="social-label">–</span></a>
+                  <a href="#" class="social-link" title="LinkedIn" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="15" height="15"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg><span class="social-label">–</span></a>
+                </div>
+              </div>
+            </div>
+            <div class="about-stats">
+              <div class="stat-item"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="16" height="16"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg><div><span class="stat-label">Domicile</span><span class="stat-val">-</span></div></div>
+              <div class="stat-item"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="16" height="16"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg><div><span class="stat-label">Occupation</span><span class="stat-val">-</span></div></div>
+              <div class="stat-item"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="16" height="16"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg><div><span class="stat-label">Hobby</span><span class="stat-val">-</span></div></div>
+              <div class="stat-item"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="16" height="16"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg><div><span class="stat-label">Motto</span><span class="stat-val">-</span></div></div>
+            </div>
+          </div>
+        </div>
+        <div class="person-card" id="pcard-s11" data-order="11" onclick="selectPerson('s11')">
+          <div class="pcard-compact">
+            <div class="pcard-avatar" style="background:linear-gradient(135deg,#38bdf8 0%,#818cf8 100%)">11</div>
+            <div class="pcard-compact-body">
+              <span class="pcard-name">Riyan Fajri Ramadhan</span>
+              <span class="pcard-role">Student</span>
+            </div>
+          </div>
+          <div class="pcard-detail">
+            <div class="pd-top">
+              <div class="pd-photo"><div class="photo-placeholder"><span>11</span></div></div>
+              <div class="pd-head">
+                <h3 class="about-name">Riyan Fajri Ramadhan</h3>
+                <p class="about-bio">Full Stack Software Engineering student at RevoU.</p>
+                <div class="pd-socials">
+                  <a href="#" class="social-link" title="Email" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="15" height="15"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg><span class="social-label">–</span></a>
+                  <a href="#" class="social-link" title="GitHub" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="15" height="15"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"/></svg><span class="social-label">–</span></a>
+                  <a href="#" class="social-link" title="LinkedIn" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="15" height="15"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg><span class="social-label">–</span></a>
+                </div>
+              </div>
+            </div>
+            <div class="about-stats">
+              <div class="stat-item"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="16" height="16"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg><div><span class="stat-label">Domicile</span><span class="stat-val">-</span></div></div>
+              <div class="stat-item"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="16" height="16"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg><div><span class="stat-label">Occupation</span><span class="stat-val">-</span></div></div>
+              <div class="stat-item"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="16" height="16"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg><div><span class="stat-label">Hobby</span><span class="stat-val">-</span></div></div>
+              <div class="stat-item"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="16" height="16"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg><div><span class="stat-label">Motto</span><span class="stat-val">-</span></div></div>
+            </div>
+          </div>
+        </div>
+        </div><!-- end about-row bottom -->
+        </div><!-- end about-rows-wrapper -->
+      </div>
+    </div>
+  </section>
 
-    // syncs both desktop & mobile search inputs
-    function syncSearch(source) {
-      const q = source.value;
-      const other = source.id === 'searchDesktop'
-        ? document.getElementById('searchMobile')
-        : document.getElementById('searchDesktop');
-      if (other) other.value = q;
-      renderCards(recordings.filter(r => r.title.toLowerCase().includes(q.toLowerCase())));
-    }
+    <!-- ═══ MATERI ═══ -->
+  <section id="materi" class="section section-alt fade-in-section">
+    <div class="section-inner">
+      <div class="section-label">
+        <span class="section-num">02</span>
+        <span class="section-rule"></span>
+        <span class="section-tag-txt" data-i18n="materi.tag">Study Materials</span>
+      </div>
+      <h2 class="section-heading" data-i18n="materi.title">Materials</h2>
+      <p class="section-sub" data-i18n="materi.subtitle">Key takeaways from each session</p>
+      <div class="materi-grid" id="materiGrid"></div>
+    </div>
+  </section>
 
-    function toggleTheme() {
-      const html = document.documentElement;
-      html.setAttribute('data-theme',
-        html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark'
-      );
-    }
+  <!-- ═══ QUIZ ═══ -->
+  <section id="game" class="section fade-in-section">
+    <div class="section-inner">
+      <div class="section-label">
+        <span class="section-num">03</span>
+        <span class="section-rule"></span>
+        <span class="section-tag-txt" data-i18n="game.tag">Mini Game</span>
+      </div>
+      <h2 class="section-heading" data-i18n="game.title">Take the Quiz</h2>
+      <p class="section-sub" data-i18n="game.subtitle">Test your programming knowledge!</p>
+      <div class="quiz-container" id="quizContainer">
+        <div class="quiz-state" id="quizStart">
+          <div class="quiz-start-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="40" height="40"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/></svg></div>
+          <p class="quiz-start-info" data-i18n="game.start.info">10 questions &middot; 30 seconds each &middot; Programming basics</p>
+          <button class="btn-primary quiz-btn" onclick="startQuiz()" data-i18n="game.start">Start Quiz</button>
+        </div>
+        <div class="quiz-state hidden" id="quizQuestion">
+          <div class="quiz-meta">
+            <span class="quiz-progress-txt" id="quizProgressTxt">1 / 10</span>
+            <div class="quiz-timer-wrap">
+              <svg class="quiz-timer-ring" viewBox="0 0 36 36">
+                <circle cx="18" cy="18" r="15.9" fill="none" stroke="var(--border)" stroke-width="2.5"/>
+                <circle id="timerArc" cx="18" cy="18" r="15.9" fill="none" stroke="var(--accent)" stroke-width="2.5" stroke-dasharray="100 100" stroke-dashoffset="0" stroke-linecap="round" transform="rotate(-90 18 18)"/>
+              </svg>
+              <span id="timerNum">30</span>
+            </div>
+          </div>
+          <div class="quiz-progress-bar"><div class="quiz-progress-fill" id="quizProgressFill"></div></div>
+          <p class="quiz-question" id="quizQuestionTxt"></p>
+          <div class="quiz-options" id="quizOptions"></div>
+          <div class="quiz-feedback hidden" id="quizFeedback">
+            <span class="feedback-icon" id="feedbackIcon"></span>
+            <span class="feedback-msg" id="feedbackMsg"></span>
+          </div>
+          <button class="btn-primary quiz-btn hidden" id="quizNextBtn" onclick="nextQuestion()" data-i18n="game.next">Next</button>
+        </div>
+        <div class="quiz-state hidden" id="quizResult">
+          <div class="result-ring">
+            <svg viewBox="0 0 36 36" class="result-arc">
+              <circle cx="18" cy="18" r="15.9" fill="none" stroke="var(--border)" stroke-width="2.5"/>
+              <circle id="resultArc" cx="18" cy="18" r="15.9" fill="none" stroke="var(--accent)" stroke-width="2.5" stroke-dasharray="100 100" stroke-dashoffset="100" stroke-linecap="round" transform="rotate(-90 18 18)"/>
+            </svg>
+            <div class="result-score-wrap"><span class="result-score" id="resultScore">0</span><span class="result-total">/10</span></div>
+          </div>
+          <h3 class="result-title" data-i18n="game.finish.title">Quiz Complete!</h3>
+          <p class="result-msg" id="resultMsg"></p>
+          <button class="btn-primary quiz-btn" onclick="startQuiz()" data-i18n="game.retry">Try Again</button>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    renderCards(recordings);
-  </script>
+
+  <!-- ═══ FOOTER ═══ -->
+  <footer class="footer-main">
+    <div class="footer-inner">
+      <span data-i18n="footer.text">TL Simulation · Team 2 · FSSE Seoul · © 2026</span>
+    </div>
+  </footer>
+
+  </main><!-- /snap-main -->
+
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/Flip.min.js"></script>
+  <script src="main.js"></script>
 </body>
 </html>
