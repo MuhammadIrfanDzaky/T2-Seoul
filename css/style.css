@@ -310,7 +310,7 @@ body {
    SECTION COMMON
 ════════════════════════════════════════════════════════════ */
 .section {
-  padding: 72px 60px;
+  padding: 100px 60px;
   min-height: 100vh;
   display: flex;
   align-items: center;
@@ -392,16 +392,21 @@ body {
   gap: 8px;
   padding-top: 2px;
 }
+/* pd-socials now sits at the bottom of pcard-detail, horizontal row */
 .pd-socials {
   display: flex;
-  flex-direction: column;
-  gap: 5px;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px solid var(--border);
 }
 .social-link {
   display: flex;
   align-items: center;
-  gap: 7px;
-  padding: 5px 9px;
+  gap: 6px;
+  padding: 5px 10px;
   border-radius: 7px;
   border: 1px solid var(--border);
   background: var(--surface);
@@ -410,8 +415,7 @@ body {
   font-size: 12px;
   font-weight: 500;
   transition: border-color .15s, color .15s, background .15s;
-  min-width: 0;
-  overflow: hidden;
+  white-space: nowrap;
 }
 .social-link svg { flex-shrink: 0; }
 .social-label {
@@ -419,17 +423,19 @@ body {
   text-overflow: ellipsis;
   white-space: nowrap;
   color: var(--text-2);
+  max-width: 140px;
 }
 .social-link:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-bg); }
 .social-link:hover .social-label { color: var(--accent); }
 
 .about-name { font-size: 22px; font-weight: 800; margin-bottom: 0; }
-.about-bio { font-size: 15px; color: var(--text-2); line-height: 1.65; margin-bottom: 24px; }
-.about-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-@media (max-width: 479px) { .about-stats { grid-template-columns: 1fr; } }
+.about-bio { font-size: 15px; color: var(--text-2); line-height: 1.65; margin-bottom: 12px; }
+/* about-stats now inside pd-head as a vertical list */
+.about-stats { display: flex; flex-direction: column; gap: 8px; }
+@media (max-width: 479px) { .about-stats { gap: 6px; } }
 .stat-item {
-  display: flex; align-items: flex-start; gap: 10px;
-  padding: 12px 14px; border-radius: 10px;
+  display: flex; align-items: flex-start; gap: 8px;
+  padding: 7px 10px; border-radius: 8px;
   background: var(--surface); border-left: 3px solid var(--accent);
 }
 .stat-item svg { color: var(--badge-txt); flex-shrink: 0; margin-top: 1px; }
@@ -463,7 +469,7 @@ body {
 
 /* slot: photo scales up, socials show as column with labels */
 .about-expanded-slot .pd-photo {
-  width: 25%;
+  width: 50%;
   height: auto;
   aspect-ratio: 1 / 1;
 }
@@ -477,7 +483,7 @@ body {
 }
 .about-expanded-slot .about-bio {
   font-size: 13px;
-  margin-bottom: 0;
+  margin-bottom: 8px;
 }
 
 /* ── outer wrapper — default: flex column, two rows stacked ── */
@@ -503,21 +509,22 @@ body {
 .about-persons-grid.has-active .about-rows-wrapper {
   flex: 0 0 calc(50% - 8px);
   min-width: 0;
-  /* flatten into a single wrap line so cards fill 4-per-row */
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-  align-content: flex-start;
+  /* switch to grid so ALL card rows share the same height */
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: 1fr;
+  gap: 12px;
+  align-content: start;
 }
 /* make each about-row invisible to layout so all cards flow flat */
 .about-persons-grid.has-active .about-row {
   display: contents;
 }
-/* 4 cards per row: (100% - 3 gaps) / 4 */
+/* cards fill their grid cell */
 .about-persons-grid.has-active .about-rows-wrapper > .about-row > .person-card,
 .about-persons-grid.has-active .about-rows-wrapper .person-card {
-  flex: 0 0 calc((100% - 36px) / 4);
   min-width: 0;
+  width: 100%;
 }
 
 /* ── rows wrapper: stacks the two rows vertically ── */
@@ -636,18 +643,223 @@ body {
 }
 
 /* ════════════════════════════════════════════════════════════
+   ABOUT — MOBILE RESPONSIVE  (≤ 767 px)
+════════════════════════════════════════════════════════════ */
+@media (max-width: 767px) {
+  /* section: natural height, no forced viewport fill */
+  #about {
+    align-items: flex-start;
+    padding: 56px 18px 40px;
+    min-height: unset;
+  }
+  #about .section-inner {
+    flex: unset;
+  }
+
+  /* grid: turn off flex-grow chain */
+  .about-persons-grid,
+  .about-rows-wrapper,
+  .about-row {
+    flex: unset;
+  }
+
+  /* ── DEFAULT state: 2-column card grid ── */
+  .about-rows-wrapper {
+    gap: 10px;
+  }
+  .about-row {
+    gap: 10px;
+    justify-content: flex-start;
+  }
+  .about-row .person-card {
+    flex: 0 0 calc(50% - 5px);
+    height: auto;
+  }
+
+  /* ── compact card: horizontal layout (avatar left, text right) ── */
+  .pcard-compact {
+    flex-direction: row;
+    align-items: center;
+    padding: 10px 12px;
+    gap: 12px;
+    height: auto;
+    max-height: none;
+  }
+  .pcard-avatar {
+    flex: 0 0 52px;
+    width: 52px;
+    min-height: 52px;
+    height: 52px;
+    border-radius: 10px;
+    font-size: 20px;
+  }
+  .pcard-compact-body {
+    padding: 0;
+    flex: 1;
+    min-width: 0;
+  }
+  .pcard-name {
+    font-size: 14px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  /* ── ACTIVE state: stack vertically (expanded on top, grid below) ── */
+  .about-persons-grid.has-active {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 14px;
+  }
+  .about-persons-grid.has-active .about-expanded-slot {
+    flex: unset;
+    width: 100%;
+  }
+  .about-persons-grid.has-active .about-rows-wrapper {
+    flex: unset;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: auto;
+    gap: 10px;
+    width: 100%;
+  }
+  .about-persons-grid.has-active .about-row {
+    display: contents;
+  }
+  .about-persons-grid.has-active .about-rows-wrapper .person-card {
+    width: 100%;
+    flex: unset;
+  }
+
+  /* expanded card: revert to vertical, smaller photo */
+  .about-expanded-slot .pd-photo {
+    width: 80px;
+    height: 80px;
+    aspect-ratio: unset;
+  }
+  .about-expanded-slot .pd-photo img,
+  .about-expanded-slot .pd-photo .photo-placeholder {
+    width: 80px;
+    height: 80px;
+    font-size: 28px;
+  }
+  .about-expanded-slot .about-name {
+    font-size: 18px;
+  }
+
+  /* keep compact card horizontal inside active grid on mobile */
+  .about-persons-grid.has-active .pcard-compact {
+    flex-direction: row;
+  }
+  .about-persons-grid.has-active .pcard-avatar {
+    flex: 0 0 52px;
+    width: 52px;
+    height: 52px;
+    min-height: 52px;
+    border-radius: 10px;
+  }
+}
+
+/* ════════════════════════════════════════════════════════════
     MATERI
 ════════════════════════════════════════════════════════════ */
-.materi-grid {
+/* ─── Module tabs ─────────────────────────────────────────── */
+.module-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 28px;
+}
+.module-tab {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+  padding: 10px 18px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  cursor: pointer;
+  transition: border-color .2s, background .2s, box-shadow .2s;
+  text-align: left;
+}
+.module-tab:hover {
+  border-color: var(--accent);
+  background: var(--accent-bg);
+}
+.module-tab.active {
+  border-color: var(--accent);
+  background: var(--accent-bg);
+  box-shadow: 0 2px 12px var(--accent-bg);
+}
+.module-tab-num {
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--badge-txt);
+}
+.module-tab.active .module-tab-num { color: var(--accent); }
+.module-tab-sub {
+  font-size: 11px;
+  color: var(--text-3);
+  font-weight: 500;
+}
+
+/* ─── Module panel ────────────────────────────────────────── */
+.module-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+/* ─── Week section ────────────────────────────────────────── */
+.week-section {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.week-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.week-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.week-pill {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--badge-txt);
+  background: var(--accent-bg);
+  border: 1px solid color-mix(in srgb, var(--accent) 30%, transparent);
+  padding: 3px 10px;
+  border-radius: 20px;
+  white-space: nowrap;
+}
+.week-course {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text);
+}
+
+/* ─── Week grid: session cards ────────────────────────────── */
+.week-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
-  gap: 16px;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 12px;
 }
 .materi-card {
-  background: var(--bg); border: 1px solid var(--border);
-  border-left: 4px solid var(--accent);
-  border-radius: 10px; padding: 20px;
-  display: flex; flex-direction: column; gap: 12px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent);
+  border-radius: 10px;
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
   transition: box-shadow .2s, transform .2s;
 }
 .materi-card:hover { box-shadow: 0 4px 18px var(--accent-bg); transform: translateY(-2px); }
@@ -666,7 +878,7 @@ body {
   position: relative; line-height: 1.5;
 }
 .materi-points li::before { content: '▸'; position: absolute; left: 0; color: var(--badge-txt); font-size: 10px; top: 3px; }
-.materi-empty { padding: 14px 0; }
+.materi-empty { padding: 10px 0; }
 .materi-empty span {
   display: inline-block; margin-bottom: 5px;
   font-size: 11px; font-weight: 700; color: var(--text-3);
@@ -681,6 +893,10 @@ body {
   text-decoration: none; transition: opacity .15s;
 }
 .materi-rec-btn:hover { opacity: .7; }
+
+@media (max-width: 600px) {
+  .week-grid { grid-template-columns: 1fr; }
+}
 
 /* ════════════════════════════════════════════════════════════
    QUIZ
@@ -770,6 +986,9 @@ html.rec-page body { height: auto !important; overflow: auto !important; }
 html.rec-page .navbar { background: var(--bg); border-color: var(--border); }
 /* footer needs no snap on this page */
 html.rec-page .footer-main { scroll-snap-align: unset; }
+
+/* ── Sub-pages (about, materials, quiz): navbar always appears solid ── */
+html.sub-page .navbar { background: var(--bg); border-color: var(--border); }
 
 /* page hero — title + search */
 .rec-hero {

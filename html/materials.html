@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html class="sub-page" data-lang="en" data-theme="light" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Materials · Team 2 Seoul · FSSE RevoU</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+<link href="style.css" rel="stylesheet"/>
+</head>
+<body>
+<!-- ═══ NAVBAR ═══ -->
+<nav class="navbar" id="navbar">
+<div class="nav-inner">
+<a class="nav-brand" href="index.html">
+<div class="brand-mark">
+<svg fill="currentColor" height="18" viewbox="0 0 24 24" width="18" xmlns="http://www.w3.org/2000/svg"><path d="M12 2a10 10 0 1 0 0 20A10 10 0 0 0 12 2zm0 3a3 3 0 1 1 0 6 3 3 0 0 1 0-6zm0 14.2a7.2 7.2 0 0 1-6-3.22c.03-1.99 4-3.08 6-3.08s5.97 1.09 6 3.08a7.2 7.2 0 0 1-6 3.22z"></path></svg>
+</div>
+<div class="brand-text">
+<span class="brand-name">Team 2</span>
+<span class="brand-sub">FSSE Seoul</span>
+</div>
+</a>
+<ul class="nav-links" id="navLinks">
+<li><a class="nav-link" data-i18n="nav.home" href="index.html">Home</a></li>
+<li><a class="nav-link" data-i18n="nav.about" href="about.html">About</a></li>
+<li><a class="nav-link active" data-i18n="nav.materi" href="materials.html">Materials</a></li>
+<li><a class="nav-link" data-i18n="nav.game" href="quiz.html">Quiz</a></li>
+<li><a class="nav-link nav-rec" data-i18n="nav.recordings" href="recordings.html">Recordings ↗</a></li>
+</ul>
+<div class="nav-actions">
+<div class="lang-switcher" id="langSwitcher">
+<button class="lang-btn active" data-lang="en" onclick="setLang('en')">EN</button>
+<button class="lang-btn" data-lang="id" onclick="setLang('id')">ID</button>
+</div>
+<button class="theme-btn-nav" onclick="toggleTheme()" title="Toggle theme">
+<svg class="icon-moon" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+<svg class="icon-sun" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 3v1m0 16v1m8.66-9h-1M4.34 12h-1m15.07-6.07-.71.71M6.34 17.66l-.71.71m12.02 0-.71-.71M6.34 6.34l-.71-.71M12 7a5 5 0 1 0 0 10A5 5 0 0 0 12 7z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</button>
+<button aria-label="Menu" class="hamburger" id="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></button>
+</div>
+</div>
+</nav>
+<!-- mobile menu -->
+<div class="mobile-menu" id="mobileMenu">
+<a class="mob-link" data-i18n="nav.home" href="index.html" onclick="toggleMenu()">Home</a>
+<a class="mob-link" data-i18n="nav.about" href="about.html" onclick="toggleMenu()">About</a>
+<a class="mob-link" data-i18n="nav.materi" href="materials.html" onclick="toggleMenu()">Materials</a>
+<a class="mob-link" data-i18n="nav.game" href="quiz.html" onclick="toggleMenu()">Quiz</a>
+<a class="mob-link" data-i18n="nav.recordings" href="recordings.html">Recordings</a>
+<div class="mob-lang">
+<button class="lang-btn active" data-lang="en" onclick="setLang('en');toggleMenu()">EN</button>
+<button class="lang-btn" data-lang="id" onclick="setLang('id');toggleMenu()">ID</button>
+</div>
+</div>
+
+<!-- ═══ SCROLL SNAP CONTAINER ═══ -->
+<main id="snap-main">
+<!-- ═══ MATERIALS ═══ -->
+<section class="section section-alt fade-in-section" id="materi">
+<div class="section-inner">
+<div class="section-label">
+<span class="section-num">02</span>
+<span class="section-rule"></span>
+<span class="section-tag-txt" data-i18n="materi.tag">Curriculum</span>
+</div>
+<h2 class="section-heading" data-i18n="materi.title">Materials</h2>
+<div class="materi-grid" id="materiGrid"></div>
+</div>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer class="footer-main">
+<div class="footer-inner">
+<span data-i18n="footer.text">TL Simulation · Team 2 · FSSE Seoul · © 2026</span>
+</div>
+</footer>
+</main><!-- /snap-main -->
+
+<script src="shared.js"></script>
+<script src="materials.js"></script>
+</body>
+</html>

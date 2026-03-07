@@ -16,10 +16,11 @@ const i18n = {
     "about.hobby": "Hobby", "about.hobby.val": "Gaming",
     "about.funfact": "Motto", "about.funfact.val": "It Is What It Is",
     "materi.tag": "Study Materials", "materi.title": "Materials",
-    "materi.subtitle": "Key takeaways from each session",
+    "materi.subtitle": "Key takeaways, grouped by module and week",
     "materi.coming": "Coming soon",
     "materi.desc": "Notes & key points will be added after each session.",
     "materi.view": "View Recording",
+    "materi.week": "Week", "materi.session": "Session",
     "game.tag": "Mini Game", "game.title": "Take the Quiz",
     "game.subtitle": "Test your programming knowledge!",
     "game.start.info": "10 questions · 30 seconds each · Programming basics",
@@ -50,10 +51,11 @@ const i18n = {
     "about.hobby": "Hobi", "about.hobby.val": "Gaming",
     "about.funfact": "Motto", "about.funfact.val": "It Is What It Is",
     "materi.tag": "Materi Belajar", "materi.title": "Materi",
-    "materi.subtitle": "Poin penting dari tiap sesi",
+    "materi.subtitle": "Poin penting, dikelompokkan per modul dan minggu",
     "materi.coming": "Segera hadir",
     "materi.desc": "Catatan dan poin penting akan ditambahkan setelah tiap sesi.",
     "materi.view": "Tonton Rekaman",
+    "materi.week": "Minggu", "materi.session": "Sesi",
     "game.tag": "Mini Game", "game.title": "Coba Quiz",
     "game.subtitle": "Uji pengetahuan programming kamu!",
     "game.start.info": "10 pertanyaan · 30 detik per soal · Dasar programming",
@@ -68,22 +70,51 @@ const i18n = {
   }
 };
 
-// ─── SESSIONS (MATERI) ────────────────────────────────────────────────────────
-const sessions = [
+// ─── MATERIALS — grouped by Module → Week → Session ───────────────────────────
+const modules = [
   {
-    num: 1, date: "25 Feb 2026", title: "Code Editor & Markdown",
-    recordingId: "y7OiHn0ZtJo",
-    points: [] // fill in key points here
+    num: 1,
+    title: { en: "Module 1", id: "Modul 1" },
+    subtitle: { en: "Web Development Essentials", id: "Dasar-dasar Pengembangan Web" },
+    weeks: [
+      {
+        week: 0,
+        course: { en: "Onboarding, Overview, and Workflow", id: "Orientasi, Ikhtisar, dan Alur Kerja" },
+        sessions: [
+          {
+            num: 1, date: "25 Feb 2026",
+            title: "Code Editor & Markdown",
+            recordingId: "y7OiHn0ZtJo",
+            points: []
+          },
+          {
+            num: 2, date: "28 Feb 2026",
+            title: "Terminal, CLI, and GIT",
+            recordingId: "fQD3B3TPdo0",
+            points: []
+          },
+        ]
+      },
+      {
+        week: 1,
+        course: { en: "Introduction to HTML", id: "Pengenalan HTML" },
+        sessions: [
+          { num: 3, date: "—", title: "Session 3", recordingId: null, points: [] },
+          { num: 4, date: "—", title: "Session 4", recordingId: null, points: [] },
+        ]
+      },
+      {
+        week: 2,
+        course: { en: "Styling & Layout", id: "Styling & Layout" },
+        sessions: [
+          { num: 5, date: "—", title: "Session 5", recordingId: null, points: [] },
+          { num: 6, date: "—", title: "Session 6", recordingId: null, points: [] },
+        ]
+      },
+    ]
   },
-  {
-    num: 2, date: "28 Feb 2026", title: "Terminal, CLI, and GIT",
-    recordingId: "fQD3B3TPdo0",
-    points: [] // fill in key points here
-  },
-  { num: 3, date: "—", title: "Session 3", recordingId: null, points: [] },
-  { num: 4, date: "—", title: "Session 4", recordingId: null, points: [] },
-  { num: 5, date: "—", title: "Session 5", recordingId: null, points: [] },
-  { num: 6, date: "—", title: "Session 6", recordingId: null, points: [] },
+  // ── Add more modules here when they become available ──
+  // { num: 2, title: { en: "Module 2", id: "Modul 2" }, subtitle: ..., weeks: [...] },
 ];
 
 // ─── QUIZ QUESTIONS ───────────────────────────────────────────────────────────
@@ -189,33 +220,71 @@ function selectPerson(id) {
     return;
   }
 
-  // ── Kill previous card instantly ──────────────────────────────────────
+  // ── Switching: different card clicked while one is already active ─────
   if (activePerson) {
-    const prev = document.getElementById('pcard-' + activePerson);
+    const prev        = document.getElementById('pcard-' + activePerson);
+    const prevOrigRow = prev ? getOrigRow(prev) : null;
+    const allCardEls  = allCards();
+
+    // 1. Snapshot EVERY card's rect BEFORE any DOM change
+    const rectsBefore = new Map(allCardEls.map(c => [c, c.getBoundingClientRect()]));
+
+    // 2. Put ALL cards in their CORRECT positions at once
+    //    (prev → its real original row, card → slot)
     if (prev) {
-      const prevOrigRow = getOrigRow(prev);
       prev.classList.add('is-flipping');
       prev.classList.remove('active');
-      prev.offsetHeight;
       prevOrigRow.appendChild(prev);
       restoreRowOrder(prevOrigRow);
-      prev.classList.remove('is-flipping');
     }
+    const origRow = getOrigRow(card);
+    restoreRowOrder(origRow);
+    slot.appendChild(card);
+    card.classList.add('active', 'is-flipping');
+    // .has-active stays — overall 50/50 layout unchanged
+
+    // 3. Force reflow so browser computes new natural positions
+    grid.offsetHeight;
+
+    // 4. Freeze ALL cards at their visual-before positions using instant transforms
+    allCardEls.forEach(c => {
+      const before = rectsBefore.get(c);
+      const after  = c.getBoundingClientRect();
+      gsap.set(c, {
+        x: before.left - after.left,
+        y: before.top  - after.top
+      });
+    });
+
+    // 5. Tween ONLY the two animated cards to (0,0) — their natural positions
+    const animated = [prev, card].filter(Boolean);
+    gsap.to(animated, {
+      x: 0, y: 0,
+      duration: 0.42,
+      ease: 'power2.inOut',
+      onComplete: () => {
+        // Clear all transforms — every card is already at its correct natural position
+        allCardEls.forEach(c => gsap.set(c, { clearProps: 'x,y,transform' }));
+        animated.forEach(c => c.classList.remove('is-flipping'));
+        setTimeout(() => card.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 500);
+      }
+    });
+
+    activePerson = id;
+    return;
   }
 
-  // ── Capture ALL card positions BEFORE any DOM mutation ────────────────
+  // ── Fresh expand (no previous active card) ────────────────────────────
   const state = Flip.getState(allCards());
 
-  // ── Mutate DOM: move card to left slot, enable side-by-side layout ────
   const origRow = getOrigRow(card);
-  restoreRowOrder(origRow);   // restore row order first so remaining cards are tidy
-  slot.appendChild(card);     // card leaves its row → goes to left slot
+  restoreRowOrder(origRow);
+  slot.appendChild(card);
   card.classList.add('active', 'is-flipping');
-  grid.classList.add('has-active'); // triggers side-by-side CSS
+  grid.classList.add('has-active');
 
-  // ── Animate all cards from old positions to new ───────────────────────
   Flip.from(state, {
-    duration: 0.38,
+    duration: 0.42,
     ease: 'power2.inOut',
     onComplete: () => {
       card.classList.remove('is-flipping');
@@ -255,27 +324,78 @@ document.querySelectorAll('.fade-in-section').forEach(el => observer.observe(el)
 // ─── MATERI CARDS ─────────────────────────────────────────────────────────────
 function renderMateri() {
   const lang = i18n[currentLang];
-  const grid = document.getElementById('materiGrid');
-  grid.innerHTML = sessions.map(s => {
-    const hasPoints = s.points && s.points.length > 0;
-    const hasRec = s.recordingId;
-    const pointsHTML = hasPoints
-      ? `<ul class="materi-points">${s.points.map(p => `<li>${p}</li>`).join('')}</ul>`
-      : `<div class="materi-empty"><span>${lang['materi.coming']}</span><p>${lang['materi.desc']}</p></div>`;
-    const recBtn = hasRec
-      ? `<a href="recordings.html" class="materi-rec-btn"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="13" height="13"><path d="M8 5v14l11-7z"/></svg>${lang['materi.view']}</a>`
-      : '';
+  const container = document.getElementById('materiGrid');
+
+  // ── Module tabs ──────────────────────────────────────────────────────────
+  const activeModuleNum = window._activeModule || modules[0].num;
+
+  const tabsHTML = `
+    <div class="module-tabs" role="tablist">
+      ${modules.map(m => `
+        <button
+          class="module-tab ${m.num === activeModuleNum ? 'active' : ''}"
+          role="tab"
+          aria-selected="${m.num === activeModuleNum}"
+          onclick="selectModule(${m.num})"
+        >
+          <span class="module-tab-num">${m.title[currentLang]}</span>
+          <span class="module-tab-sub">${m.subtitle[currentLang]}</span>
+        </button>
+      `).join('')}
+    </div>`;
+
+  // ── Active module content ────────────────────────────────────────────────
+  const activeModule = modules.find(m => m.num === activeModuleNum) || modules[0];
+
+  const weeksHTML = activeModule.weeks.map(w => {
+    const sessionsHTML = w.sessions.map(s => {
+      const hasPoints = s.points && s.points.length > 0;
+      const hasRec    = s.recordingId;
+
+      const pointsHTML = hasPoints
+        ? `<ul class="materi-points">${s.points.map(p => `<li>${p}</li>`).join('')}</ul>`
+        : `<div class="materi-empty">
+             <span>${lang['materi.coming']}</span>
+             <p>${lang['materi.desc']}</p>
+           </div>`;
+
+      const recBtn = hasRec
+        ? `<a href="recordings.html" class="materi-rec-btn">
+             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="13" height="13"><path d="M8 5v14l11-7z"/></svg>
+             ${lang['materi.view']}
+           </a>`
+        : '';
+
+      return `
+        <div class="materi-card ${!hasPoints ? 'materi-card-empty' : ''}">
+          <div class="materi-top">
+            <span class="materi-num">${lang['materi.session']} ${String(s.num).padStart(2,'0')}</span>
+            <span class="materi-date">${s.date}</span>
+          </div>
+          <h3 class="materi-title-txt">${s.title}</h3>
+          ${pointsHTML}
+          ${recBtn}
+        </div>`;
+    }).join('');
+
     return `
-      <div class="materi-card ${!hasPoints ? 'materi-card-empty' : ''}">
-        <div class="materi-top">
-          <span class="materi-num">Session ${String(s.num).padStart(2,'0')}</span>
-          <span class="materi-date">${s.date}</span>
+      <div class="week-section">
+        <div class="week-header">
+          <div class="week-label">
+            <span class="week-pill">${lang['materi.week']} ${w.week}</span>
+            <span class="week-course">${w.course[currentLang]}</span>
+          </div>
         </div>
-        <h3 class="materi-title-txt">${s.title}</h3>
-        ${pointsHTML}
-        ${recBtn}
+        <div class="week-grid">${sessionsHTML}</div>
       </div>`;
   }).join('');
+
+  container.innerHTML = tabsHTML + `<div class="module-panel">${weeksHTML}</div>`;
+}
+
+function selectModule(num) {
+  window._activeModule = num;
+  renderMateri();
 }
 
 // ─── QUIZ ─────────────────────────────────────────────────────────────────────

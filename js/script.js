@@ -2,7 +2,7 @@ const recordings = [
     { date: "25 Feb 2026", title: "Code Editor & Markdown", link: "https://youtu.be/y7OiHn0ZtJo", videoId: "y7OiHn0ZtJo" },
     { date: "28 Feb 2026", title: "Terminal, CLI, and GIT", link: "https://youtu.be/fQD3B3TPdo0", videoId: "fQD3B3TPdo0" },
     { date: "04 Mar 2026", title: "Git Collaborations", link: "https://youtu.be/7_E8M9D5PRc", videoId: "7_E8M9D5PRc" },
-    // { date: "28 Feb 2026", title: "JavaScript Essentials",        link: "https://youtu.be/dQw4w9WgXcQ", videoId: "dQw4w9WgXcQ" },
+    { date: "08 Mar 2026", title: "Module 1 Assignment d& HTML", link: "https://youtu.be/4H-nEXL9rjU", videoId: "4H-nEXL9rjU" },
     // { date: "01 Mar 2026", title: "React Introduction & JSX",     link: "https://youtu.be/dQw4w9WgXcQ", videoId: "dQw4w9WgXcQ" },
     // { date: "03 Mar 2026", title: "State Management with Hooks",  link: "https://youtu.be/dQw4w9WgXcQ", videoId: "dQw4w9WgXcQ" },
     // { date: "05 Mar 2026", title: "REST API & Fetch",             link: "https://youtu.be/dQw4w9WgXcQ", videoId: "dQw4w9WgXcQ" },
