@@ -18,9 +18,9 @@
   --surface-3:    #ccc8bf;
   --border:       #cbc5bc;
   --border-h:     #ffde3d;
-  --text:         #1c1917;
-  --text-2:       #4a4541;
-  --text-3:       #8c8278;
+  --text:         #1a1714;
+  --text-2:       #3a3530;
+  --text-3:       #706560;
   --badge-bg:     rgba(255,222,61,.12);
   --badge-txt:    #7a6200;
   --thumb-bg:     #dedad3;
@@ -35,9 +35,9 @@
   --surface-3:    #303a50;
   --border:       #2a3347;
   --border-h:     #ffde3d;
-  --text:         #e2e6ef;
-  --text-2:       #8a95aa;
-  --text-3:       #4a5568;
+  --text:         #edf0f7;
+  --text-2:       #a4b1c8;
+  --text-3:       #6a7d96;
   --badge-bg:     rgba(255,222,61,.13);
   --badge-txt:    #ffe566;
   --thumb-bg:     #252d3d;
@@ -92,8 +92,15 @@ body {
 }
 .brand-mark {
   width: 34px; height: 34px; border-radius: 8px;
-  background: var(--accent); color: #1c1917;
+  background: linear-gradient(135deg, var(--accent) 0%, var(--accent-warm) 100%);
+  color: #1c1917;
   display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+  font-size: 13px; font-weight: 800; letter-spacing: -0.5px;
+  transition: box-shadow .25s, transform .2s;
+}
+.nav-brand:hover .brand-mark {
+  box-shadow: 0 0 0 4px rgba(255,222,61,.3);
+  transform: scale(1.1);
 }
 .brand-text { display: flex; flex-direction: column; line-height: 1.2; }
 .brand-name { font-size: 14px; font-weight: 700; }
@@ -797,7 +804,7 @@ body {
   font-weight: 800;
   color: var(--badge-txt);
 }
-.module-tab.active .module-tab-num { color: var(--accent); }
+.module-tab.active .module-tab-num { color: var(--badge-txt); }
 .module-tab-sub {
   font-size: 11px;
   color: var(--text-3);
@@ -845,57 +852,274 @@ body {
   color: var(--text);
 }
 
-/* ─── Week grid: session cards ────────────────────────────── */
-.week-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  gap: 12px;
+/* ─── Materials page: top-align section ──────────────────── */
+#materi {
+  align-items: flex-start;
+  padding-top: 80px;
+  padding-bottom: 80px;
 }
-.materi-card {
-  background: var(--bg);
-  border: 1px solid var(--border);
-  border-left: 3px solid var(--accent);
-  border-radius: 10px;
-  padding: 18px;
+
+/* ─── Two-panel layout ────────────────────────────────────── */
+.materi-layout {
+  display: flex;
+  gap: 32px;
+  align-items: flex-start;
+  margin-top: 28px;
+}
+
+/* ─── Left: lecture nav sidebar ───────────────────────────── */
+.materi-nav-wrap {
+  flex-shrink: 0;
+  position: sticky;
+  top: 80px;
+  height: fit-content;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 6px;
+}
+.materi-nav {
+  width: 220px;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  transition: box-shadow .2s, transform .2s;
+  gap: 8px;
+  transition: width .3s cubic-bezier(.4,0,.2,1), opacity .2s;
 }
-.materi-card:hover { box-shadow: 0 4px 18px var(--accent-bg); transform: translateY(-2px); }
-.materi-card-empty { border-left-color: var(--border); opacity: .7; }
-.materi-top { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
-.materi-num {
-  font-size: 11px; font-weight: 800; letter-spacing: .08em;
-  color: var(--badge-txt); background: var(--accent-bg);
-  padding: 3px 9px; border-radius: 5px;
+.materi-nav-wrap.collapsed .materi-nav {
+  width: 0;
+  opacity: 0;
+  pointer-events: none;
 }
-.materi-date { font-size: 12px; color: var(--text-3); }
-.materi-title-txt { font-size: 15px; font-weight: 700; line-height: 1.4; }
-.materi-points { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+
+/* ── Sidebar collapse button (square, right of nav) ── */
+.materi-nav-collapser {
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-3);
+  padding: 0;
+  transition: background .15s, color .15s, border-color .15s;
+}
+.materi-nav-collapser:hover {
+  background: var(--accent-bg);
+  color: var(--badge-txt);
+  border-color: color-mix(in srgb, var(--accent) 50%, var(--border));
+}
+.materi-nav-collapser-icon {
+  transition: transform .3s cubic-bezier(.4,0,.2,1);
+}
+.materi-nav-wrap.collapsed .materi-nav-collapser-icon {
+  transform: rotate(180deg);
+}
+
+/* ── Week group (accordion shell) ── */
+.materi-nav-group {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+  transition: border-color .2s;
+}
+.materi-nav-group.open {
+  border-color: color-mix(in srgb, var(--accent) 45%, var(--border));
+}
+
+/* ── Week header button ── */
+.materi-nav-week-btn {
+  display: flex; align-items: center; justify-content: space-between; gap: 8px;
+  padding: 10px 12px;
+  background: var(--surface);
+  border: none; cursor: pointer;
+  text-align: left;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  transition: background .15s;
+  width: 100%;
+}
+.materi-nav-week-btn:hover { background: var(--surface-2); }
+.materi-nav-group.open .materi-nav-week-btn { background: var(--accent-bg); }
+
+.materi-nav-week-info {
+  display: flex; flex-direction: column; gap: 2px;
+  min-width: 0;
+}
+.materi-nav-week-tag {
+  font-size: 10px; font-weight: 800; letter-spacing: .1em;
+  text-transform: uppercase; color: var(--badge-txt);
+}
+.materi-nav-course {
+  font-size: 11px; font-weight: 600; color: var(--text-2);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.materi-week-chevron {
+  flex-shrink: 0; color: var(--text-3);
+  transition: transform .28s cubic-bezier(.4,0,.2,1), color .2s;
+}
+.materi-nav-group.open .materi-week-chevron {
+  transform: rotate(180deg);
+  color: var(--badge-txt);
+}
+
+/* ── Session list (collapsible) ── */
+.materi-nav-sessions {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height .32s cubic-bezier(.4,0,.2,1);
+  display: flex; flex-direction: column;
+  border-top: 0px solid var(--border);
+}
+.materi-nav-group.open .materi-nav-sessions {
+  border-top-width: 1px;
+}
+
+.materi-nav-item {
+  display: flex; flex-direction: column; align-items: flex-start; gap: 2px;
+  padding: 9px 12px;
+  background: none; border: none;
+  border-left: 2px solid transparent;
+  cursor: pointer;
+  text-align: left;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  color: var(--text-2);
+  transition: background .15s, border-color .15s, color .15s;
+  width: 100%;
+}
+.materi-nav-item:hover {
+  background: var(--accent-bg);
+  color: var(--text);
+  border-left-color: color-mix(in srgb, var(--accent) 50%, transparent);
+}
+.materi-nav-item.active {
+  background: var(--accent-bg);
+  border-left-color: var(--accent);
+  color: var(--text);
+}
+.materi-nav-lec {
+  font-size: 10px; font-weight: 800; letter-spacing: .09em;
+  text-transform: uppercase;
+  color: var(--badge-txt);
+  opacity: .65;
+  transition: opacity .15s;
+}
+.materi-nav-item.active .materi-nav-lec,
+.materi-nav-item:hover  .materi-nav-lec { opacity: 1; }
+.materi-nav-title {
+  font-size: 13px; font-weight: 600; line-height: 1.4;
+}
+
+/* ─── Right: content panel ────────────────────────────────── */
+.materi-content {
+  flex: 1;
+  min-width: 0;
+  transition: opacity .2s ease, transform .2s ease;
+}
+.materi-content.switching {
+  opacity: 0;
+  transform: translateY(10px);
+  pointer-events: none;
+}
+.materi-content.entering {
+  animation: materi-enter .35s cubic-bezier(.22,1,.36,1) both;
+}
+@keyframes materi-enter {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.materi-content-inner { display: flex; flex-direction: column; gap: 28px; }
+
+.materi-content-title {
+  font-size: clamp(1.35rem, 2.5vw, 1.75rem);
+  font-weight: 800;
+  letter-spacing: -.02em;
+  line-height: 1.25;
+  padding-bottom: 14px;
+  border-bottom: 2px solid var(--accent);
+  width: fit-content;
+}
+
+/* ─── Sections ─────────────────────────────────────────────── */
+.materi-sections-wrap {
+  display: flex; flex-direction: column; gap: 24px;
+  counter-reset: materi-sec;
+}
+.materi-section {
+  display: flex; flex-direction: column; gap: 10px;
+  counter-increment: materi-sec;
+}
+.materi-section-title {
+  display: flex; align-items: center; gap: 10px;
+  font-size: 11px; font-weight: 800; letter-spacing: .07em;
+  text-transform: uppercase; color: var(--badge-txt);
+}
+.materi-section-title::before {
+  content: counter(materi-sec, decimal-leading-zero);
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 22px; height: 22px; flex-shrink: 0;
+  font-size: 10px; font-weight: 900; letter-spacing: 0;
+  background: var(--accent); color: #1c1917;
+  border-radius: 6px;
+}
+.materi-section-title::after {
+  content: '';
+  flex: 1; height: 1px;
+  background: var(--border);
+}
+.materi-points {
+  list-style: none;
+  display: flex; flex-direction: column; gap: 8px;
+  padding-left: 4px;
+}
 .materi-points li {
-  font-size: 13px; color: var(--text-2); padding-left: 14px;
-  position: relative; line-height: 1.5;
+  font-size: 13.5px; color: var(--text-2);
+  padding-left: 20px; position: relative; line-height: 1.65;
 }
-.materi-points li::before { content: '▸'; position: absolute; left: 0; color: var(--badge-txt); font-size: 10px; top: 3px; }
-.materi-empty { padding: 10px 0; }
+.materi-points li::before {
+  content: '';
+  position: absolute; left: 2px; top: 9px;
+  width: 6px; height: 6px;
+  background: var(--accent);
+  border-radius: 2px;
+  transform: rotate(45deg);
+}
+
+.materi-empty { padding: 4px 0 8px; }
 .materi-empty span {
-  display: inline-block; margin-bottom: 5px;
+  display: inline-block; margin-bottom: 6px;
   font-size: 11px; font-weight: 700; color: var(--text-3);
   text-transform: uppercase; letter-spacing: .08em;
   background: var(--surface); border: 1px dashed var(--border);
   padding: 3px 10px; border-radius: 5px;
 }
 .materi-empty p { font-size: 13px; color: var(--text-3); line-height: 1.5; }
-.materi-rec-btn {
-  display: inline-flex; align-items: center; gap: 6px; margin-top: auto;
-  font-size: 13px; font-weight: 700; color: var(--badge-txt);
-  text-decoration: none; transition: opacity .15s;
-}
-.materi-rec-btn:hover { opacity: .7; }
 
-@media (max-width: 600px) {
-  .week-grid { grid-template-columns: 1fr; }
+/* ─── Responsive ───────────────────────────────────────────── */
+@media (max-width: 860px) {
+  .materi-layout { flex-direction: column; gap: 16px; }
+  .materi-nav-wrap { position: static; width: 100%; flex-wrap: wrap; gap: 4px; }
+  .materi-nav-collapser { display: none; }
+  .materi-nav {
+    width: 100% !important; opacity: 1 !important; pointer-events: auto !important;
+    flex-direction: row; flex-wrap: wrap; gap: 6px;
+  }
+  .materi-nav-group { flex-direction: row; flex-wrap: wrap; gap: 6px; align-items: center; border: none; border-radius: 0; overflow: visible; }
+  .materi-nav-week-btn { display: none; }
+  .materi-nav-sessions { max-height: none !important; overflow: visible; border-top: none; flex-direction: row; flex-wrap: wrap; gap: 6px; }
+  .materi-nav-item {
+    border: 1px solid var(--border);
+    border-left: 2px solid transparent;
+    border-radius: 8px; padding: 7px 12px;
+  }
+  .materi-nav-item.active { border-color: var(--accent); border-left-color: var(--accent); }
+  .materi-nav-item:hover  { border-color: var(--accent); }
 }
 
 /* ════════════════════════════════════════════════════════════
