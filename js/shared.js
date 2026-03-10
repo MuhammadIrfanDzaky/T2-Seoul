@@ -90,7 +90,9 @@ function setLang(lang) {
 // ─── THEME ────────────────────────────────────────────────────────────────────
 function toggleTheme() {
   const html = document.documentElement;
-  html.setAttribute('data-theme', html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+  const next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+  html.setAttribute('data-theme', next);
+  localStorage.setItem('theme', next);
 }
 
 // ─── MOBILE MENU ──────────────────────────────────────────────────────────────
@@ -155,6 +157,10 @@ function _setupFadeIn() {
 
 // ─── SHARED INIT ─────────────────────────────────────────────────────────────
 document.addEventListener('DOMContentLoaded', () => {
+  // Apply saved theme (default: dark)
+  const savedTheme = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', savedTheme);
+
   _setupNavbarScroll();
   _setActiveNavLink();
   _setupFadeIn();
