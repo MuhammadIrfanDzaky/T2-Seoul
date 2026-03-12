@@ -4,7 +4,7 @@ const recordings = [
     { date: "04 Mar 2026", title: "Git Collaborations", link: "https://youtu.be/7_E8M9D5PRc", videoId: "7_E8M9D5PRc" },
     { date: "07 Mar 2026", title: "Module 1 Assignment & HTML", link: "https://youtu.be/4H-nEXL9rjU", videoId: "4H-nEXL9rjU" },
     { date: "10 Mar 2026", title: "Intro to CSS & CSS Box Model",     link: "https://youtu.be/R8T7LHROiVw", videoId: "R8T7LHROiVw" },
-    // { date: "03 Mar 2026", title: "State Management with Hooks",  link: "https://youtu.be/dQw4w9WgXcQ", videoId: "dQw4w9WgXcQ" },
+    { date: "13 Mar 2026", title: "CSS Flexbox & Grid and Responsive Web Page",  link: "https://youtu.be/vi_HT2nsyrI", videoId: "vi_HT2nsyrI" },
     // { date: "05 Mar 2026", title: "REST API & Fetch",             link: "https://youtu.be/dQw4w9WgXcQ", videoId: "dQw4w9WgXcQ" },
     // { date: "07 Mar 2026", title: "Database & SQL Basics",        link: "https://youtu.be/dQw4w9WgXcQ", videoId: "dQw4w9WgXcQ" },
     // { date: "10 Mar 2026", title: "Authentication & JWT",         link: "https://youtu.be/dQw4w9WgXcQ", videoId: "dQw4w9WgXcQ" },
