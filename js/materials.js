@@ -19,6 +19,7 @@ const modules = [
             recordingId: null,
             sections: [
               {
+                icon: '🌐',
                 title: { en: "What is Web Development?", id: "Apa itu Web Development?" },
                 items: {
                   en: [
@@ -34,6 +35,7 @@ const modules = [
                 }
               },
               {
+                icon: '⚙️',
                 title: { en: "What is a Software Engineer?", id: "Apa itu Software Engineer?" },
                 items: {
                   en: [
@@ -51,6 +53,7 @@ const modules = [
                 }
               },
               {
+                icon: '💻',
                 title: { en: "Programming Languages", id: "Bahasa Pemrograman" },
                 items: {
                   en: [
@@ -72,6 +75,7 @@ const modules = [
                 }
               },
               {
+                icon: '🗺️',
                 title: { en: "Software Engineering Career Roadmap", id: "Jalur Karir Software Engineering" },
                 items: {
                   en: [
@@ -87,6 +91,7 @@ const modules = [
                 }
               },
               {
+                icon: '🆚',
                 title: { en: "Website vs Web Application", id: "Website vs Web Application" },
                 items: {
                   en: [
@@ -108,6 +113,7 @@ const modules = [
             recordingId: "y7OiHn0ZtJo",
             sections: [
               {
+                icon: '🖥️',
                 title: { en: "Code Editors & IDEs", id: "Code Editor & IDE" },
                 items: {
                   en: [
@@ -125,6 +131,7 @@ const modules = [
                 }
               },
               {
+                icon: '🛠️',
                 title: { en: "Our IDE: VS Code & Kiro", id: "IDE yang Kita Gunakan: VS Code & Kiro" },
                 items: {
                   en: [
@@ -138,6 +145,7 @@ const modules = [
                 }
               },
               {
+                icon: '📖',
                 title: { en: "Documentation & README", id: "Dokumentasi & README" },
                 items: {
                   en: [
@@ -157,6 +165,7 @@ const modules = [
                 }
               },
               {
+                icon: '✍️',
                 title: { en: "What is Markdown?", id: "Apa itu Markdown?" },
                 items: {
                   en: [
@@ -184,55 +193,58 @@ const modules = [
             recordingId: "fQD3B3TPdo0",
             sections: [
               {
+                icon: '🖥️',
                 title: { en: "Terminal, Shell & CLI", id: "Terminal, Shell & CLI" },
                 items: {
                   en: [
                     "Terminal and CLI are used together for faster and more efficient computer navigation",
                     "The terminal is just the display (UI); the actual command processing is handled by the Shell",
                     "Shell is the communication bridge between the terminal and the OS",
-                    "Prompt symbols: $ or % = regular user | # = superuser/root ⚠️ | ~ = home folder",
-                    "Popular shells: sh (most basic), bash (default Mac/Linux), zsh (more modern), fish (user-friendly)",
+                    "Prompt symbols: `$` or `%` = regular user | `#` = superuser/root ⚠️ | `~` = home folder",
+                    "Popular shells: `sh` (most basic), `bash` (default Mac/Linux), `zsh` (more modern), `fish` (user-friendly)",
                   ],
                   id: [
                     "Terminal dan CLI digunakan bersama untuk navigasi komputer yang lebih cepat dan efisien",
                     "Terminal hanyalah tampilan (UI), yang benar-benar memproses perintah adalah Shell",
                     "Shell adalah jembatan komunikasi antara terminal dan Operating System",
-                    "Simbol prompt: $ atau % = regular user | # = superuser/root ⚠️ | ~ = home folder",
-                    "Shell populer: sh (paling dasar), bash (default Mac/Linux), zsh (lebih modern), fish (user-friendly)",
+                    "Simbol prompt: `$` atau `%` = regular user | `#` = superuser/root ⚠️ | `~` = home folder",
+                    "Shell populer: `sh` (paling dasar), `bash` (default Mac/Linux), `zsh` (lebih modern), `fish` (user-friendly)",
                   ]
                 }
               },
               {
+                icon: '📋',
                 title: { en: "Core Terminal Commands", id: "Perintah Terminal Inti" },
                 items: {
                   en: [
-                    "cd — change directory | ls / dir — list contents | pwd — print working directory",
-                    "mkdir — create directory | rm / del — delete file | rm -r / rd /s — delete directory",
-                    "cp / copy — copy file | mv / move — move or rename | cat / type — view file contents",
-                    "clear / cls — clear screen | grep / find — search string in file | man / /? — show help",
-                    "Naming is case sensitive — File, file, and FILE are three different things",
+                    "`cd` — change directory | `ls` / `dir` — list contents | `pwd` — print working directory",
+                    "`mkdir` — create directory | `rm` / `del` — delete file | `rm -r` / `rd /s` — delete directory",
+                    "`cp` / `copy` — copy file | `mv` / `move` — move or rename | `cat` / `type` — view file contents",
+                    "`clear` / `cls` — clear screen | `grep` / `find` — search string in file | `man` / `/?` — show help",
+                    "Naming is case sensitive — `File`, `file`, and `FILE` are three different things",
                   ],
                   id: [
-                    "cd — pindah folder | ls / dir — lihat isi folder | pwd — cek lokasi saat ini",
-                    "mkdir — buat folder | rm / del — hapus file | rm -r / rd /s — hapus folder",
-                    "cp / copy — salin file | mv / move — pindah atau rename | cat / type — lihat isi file",
-                    "clear / cls — bersihkan layar | grep / find — cari string dalam file | man / /? — tampilkan bantuan",
-                    "Penamaan di terminal bersifat case sensitive — File, file, dan FILE adalah tiga hal yang berbeda",
+                    "`cd` — pindah folder | `ls` / `dir` — lihat isi folder | `pwd` — cek lokasi saat ini",
+                    "`mkdir` — buat folder | `rm` / `del` — hapus file | `rm -r` / `rd /s` — hapus folder",
+                    "`cp` / `copy` — salin file | `mv` / `move` — pindah atau rename | `cat` / `type` — lihat isi file",
+                    "`clear` / `cls` — bersihkan layar | `grep` / `find` — cari string dalam file | `man` / `/?` — tampilkan bantuan",
+                    "Penamaan di terminal bersifat case sensitive — `File`, `file`, dan `FILE` adalah tiga hal yang berbeda",
                   ]
                 }
               },
               {
+                icon: '📦',
                 title: { en: "Terminal Package Managers", id: "Package Manager Terminal" },
                 items: {
                   en: [
-                    "macOS: Homebrew (`brew`) — brew install git | brew install --cask google-chrome",
-                    "Linux Ubuntu: APT — sudo apt update && sudo apt install git",
-                    "Windows: winget (built-in Win 10+) — winget search git | winget install git",
+                    "macOS: Homebrew (`brew`) — `brew install git` | `brew install --cask google-chrome`",
+                    "Linux Ubuntu: `APT` — `sudo apt update && sudo apt install git`",
+                    "Windows: `winget` (built-in Win 10+) — `winget search git` | `winget install git`",
                   ],
                   id: [
-                    "macOS: Homebrew (`brew`) — brew install git | brew install --cask google-chrome",
-                    "Linux Ubuntu: APT — sudo apt update && sudo apt install git",
-                    "Windows: winget (bawaan Win 10+) — winget search git | winget install git",
+                    "macOS: Homebrew (`brew`) — `brew install git` | `brew install --cask google-chrome`",
+                    "Linux Ubuntu: `APT` — `sudo apt update && sudo apt install git`",
+                    "Windows: `winget` (bawaan Win 10+) — `winget search git` | `winget install git`",
                   ]
                 }
               },
@@ -245,6 +257,7 @@ const modules = [
             recordingId: "7_E8M9D5PRc",
             sections: [
               {
+                icon: '🔧',
                 title: { en: "What is Git?", id: "Apa itu Git?" },
                 items: {
                   en: [
@@ -262,55 +275,58 @@ const modules = [
                 }
               },
               {
+                icon: '🔄',
                 title: { en: "Git Workflow & File States", id: "Git Workflow & Status File" },
                 items: {
                   en: [
-                    "Working Directory → git add → Staging Area → git commit → Local Repo → git push → Remote Repo",
-                    "Untracked: Git doesn't know this file exists yet",
-                    "Modified: changes exist but not yet staged | Staged: git add-ed, ready to commit",
-                    "Committed: changes permanently saved in Git history",
+                    "[[Working Directory]] → `git add` → [[Staging Area]] → `git commit` → [[Local Repo]] → `git push` → [[Remote Repo]]",
+                    "[[Untracked]]: Git doesn't know this file exists yet",
+                    "[[Modified]]: changes exist but not yet staged | [[Staged]]: `git add`-ed, ready to commit",
+                    "[[Committed]]: changes permanently saved in Git history",
                   ],
                   id: [
-                    "Working Directory → git add → Staging Area → git commit → Local Repo → git push → Remote Repo",
-                    "Untracked: Git belum mengenali file ini",
-                    "Modified: ada perubahan tapi belum di-stage | Staged: sudah di-add, siap commit",
-                    "Committed: perubahan sudah tersimpan permanen di riwayat Git",
+                    "[[Working Directory]] → `git add` → [[Staging Area]] → `git commit` → [[Local Repo]] → `git push` → [[Remote Repo]]",
+                    "[[Untracked]]: Git belum mengenali file ini",
+                    "[[Modified]]: ada perubahan tapi belum di-stage | [[Staged]]: sudah di-`add`, siap commit",
+                    "[[Committed]]: perubahan sudah tersimpan permanen di riwayat Git",
                   ]
                 }
               },
               {
+                icon: '📟',
                 title: { en: "Basic Git Commands", id: "Perintah Dasar Git" },
                 items: {
                   en: [
-                    "git config — set username and email | git init — initialize a new repository",
-                    "git clone — copy an existing repository | git status — check current repo status",
-                    "git add — move changes to staging area | git commit -m 'message' — save to history",
-                    "git log — view commit history | git push — upload to remote | git pull — download & merge",
+                    "`git config` — set username and email | `git init` — initialize a new repository",
+                    "`git clone` — copy an existing repository | `git status` — check current repo status",
+                    "`git add` — move changes to [[Staging Area]] | `git commit -m 'message'` — save to history",
+                    "`git log` — view commit history | `git push` — upload to remote | `git pull` — download & merge",
                     "Always prefix with `git`. It's `git status`, not just `status`.",
                   ],
                   id: [
-                    "git config — set nama dan email | git init — inisialisasi repo baru",
-                    "git clone — salin repo yang sudah ada | git status — cek status repo saat ini",
-                    "git add — pindahkan ke staging area | git commit -m 'pesan' — simpan ke riwayat",
-                    "git log — lihat histori commit | git push — upload ke remote | git pull — download & merge",
+                    "`git config` — set nama dan email | `git init` — inisialisasi repo baru",
+                    "`git clone` — salin repo yang sudah ada | `git status` — cek status repo saat ini",
+                    "`git add` — pindahkan ke [[Staging Area]] | `git commit -m 'pesan'` — simpan ke riwayat",
+                    "`git log` — lihat histori commit | `git push` — upload ke remote | `git pull` — download & merge",
                     "Selalu tambahkan `git` sebelum nama command. Bukan `status`, tapi `git status`.",
                   ]
                 }
               },
               {
+                icon: '✅',
                 title: { en: "Commit Best Practices", id: "Best Practice Commit" },
                 items: {
                   en: [
-                    "Conventional Commits format: <type>[optional scope]: <description>",
-                    "Types: feat (new feature), fix (bug), docs, style, refactor, test, chore",
+                    "Conventional Commits format: `<type>[optional scope]: <description>`",
+                    "Types: `feat` (new feature), `fix` (bug), `docs`, `style`, `refactor`, `test`, `chore`",
                     "Atomic Commits ⭐ — one commit = one logical change (most recommended)",
-                    "❌ Avoid: vague messages ('fix stuff'), committing node_modules/.env, not running git pull before push",
+                    "❌ Avoid: vague messages (`'fix stuff'`), committing `node_modules`/`.env`, not running `git pull` before push",
                   ],
                   id: [
-                    "Format Conventional Commits: <type>[optional scope]: <description>",
-                    "Types: feat (fitur baru), fix (bug), docs, style, refactor, test, chore",
+                    "Format Conventional Commits: `<type>[optional scope]: <description>`",
+                    "Types: `feat` (fitur baru), `fix` (bug), `docs`, `style`, `refactor`, `test`, `chore`",
                     "Atomic Commits ⭐ — satu commit = satu perubahan logis (paling direkomendasikan)",
-                    "❌ Hindari: pesan tidak jelas ('fix stuff'), commit node_modules/.env, tidak git pull sebelum push",
+                    "❌ Hindari: pesan tidak jelas (`'fix stuff'`), commit `node_modules`/`.env`, tidak `git pull` sebelum push",
                   ]
                 }
               },
@@ -323,78 +339,83 @@ const modules = [
             recordingId: "4H-nEXL9rjU",
             sections: [
               {
+                icon: '🌿',
                 title: { en: "Branches", id: "Branch" },
                 items: {
                   en: [
                     "A branch is a separate line of development — changes do not affect other branches until you merge",
                     "Enables multiple people to work on different features simultaneously",
-                    "git checkout -b <branch-name> — create a new branch | git checkout <branch-name> — switch branch",
-                    "git merge <source-branch> — merge a branch into the current branch",
+                    "`git checkout -b <branch-name>` — create a new branch | `git checkout <branch-name>` — switch branch",
+                    "`git merge <source-branch>` — merge a branch into the current branch",
                   ],
                   id: [
                     "Branch adalah jalur pengembangan terpisah — perubahan tidak mempengaruhi branch lain sampai di-merge",
                     "Memungkinkan beberapa orang mengerjakan fitur berbeda secara bersamaan",
-                    "git checkout -b <nama> — buat branch baru | git checkout <nama> — pindah branch",
-                    "git merge <branch-acuan> — gabungkan branch ke branch aktif",
+                    "`git checkout -b <nama>` — buat branch baru | `git checkout <nama>` — pindah branch",
+                    "`git merge <branch-acuan>` — gabungkan branch ke branch aktif",
                   ]
                 }
               },
               {
+                icon: '⚡',
                 title: { en: "Merge Conflicts", id: "Merge Conflict" },
                 items: {
                   en: [
                     "A conflict occurs when two people edit the same part of the same file, and Git doesn't know which is correct",
-                    "Commonly happens during: git merge, git pull, or opening a Pull Request",
-                    "How to resolve: git pull source branch → git checkout your-branch → git merge source-branch",
-                    "Manually remove conflict markers (<<<, ===, >>>) → git add → git commit -m 'resolve conflict' → git push",
+                    "Commonly happens during: `git merge`, `git pull`, or opening a Pull Request",
+                    "How to resolve: `git pull` → `git checkout your-branch` → `git merge source-branch`",
+                    "Manually remove conflict markers (`<<<`, `===`, `>>>`) → `git add` → `git commit -m 'resolve conflict'` → `git push`",
                   ],
                   id: [
                     "Conflict terjadi ketika dua orang mengubah bagian yang sama pada file yang sama, dan Git tidak tahu mana yang benar",
-                    "Biasanya muncul saat: git merge, git pull, atau membuka Pull Request",
-                    "Cara resolve: git pull branch acuan → git checkout branch kamu → git merge branch acuan",
-                    "Hapus conflict markers (<<<, ===, >>>) secara manual → git add → git commit -m 'resolve conflict' → git push",
+                    "Biasanya muncul saat: `git merge`, `git pull`, atau membuka Pull Request",
+                    "Cara resolve: `git pull` → `git checkout branch-kamu` → `git merge branch-acuan`",
+                    "Hapus conflict markers (`<<<`, `===`, `>>>`) secara manual → `git add` → `git commit -m 'resolve conflict'` → `git push`",
                   ]
                 }
               },
               {
+                icon: '🐙',
                 title: { en: "GitHub", id: "GitHub" },
                 items: {
                   en: [
                     "The most popular platform for publishing and collaborating on Git repositories",
                     "Owned by Microsoft since 2018 (acquired for US$7.5 billion)",
                     "⚠️ GitHub ≠ Git — Git is the tool, GitHub is the hosting platform",
-                    "First-time push: git remote add origin <url> → git branch -M main → git push -u origin main",
-                    "Clone a repo: git clone <url> — no need to run git init again",
+                    "First-time push: `git remote add origin <url>` → `git branch -M main` → `git push -u origin main`",
+                    "Clone a repo: `git clone <url>` — no need to run `git init` again",
                   ],
                   id: [
                     "Platform paling populer untuk publish dan berkolaborasi di Git repository",
                     "Dimiliki oleh Microsoft sejak 2018 (diakuisisi senilai US$7.5 miliar)",
                     "⚠️ GitHub ≠ Git — Git adalah tool-nya, GitHub adalah platform hosting-nya",
-                    "Push pertama kali: git remote add origin <url> → git branch -M main → git push -u origin main",
-                    "Clone repo: git clone <url> — tidak perlu git init lagi",
+                    "Push pertama kali: `git remote add origin <url>` → `git branch -M main` → `git push -u origin main`",
+                    "Clone repo: `git clone <url>` — tidak perlu `git init` lagi",
                   ]
                 }
               },
               {
+                icon: '🤝',
+                type: 'steps',
                 title: { en: "Collaboration Simulation (7 Steps)", id: "Simulasi Kolaborasi (7 Langkah)" },
                 items: {
                   en: [
                     "1. Create a new GitHub repo, invite collaborators",
-                    "2. Everyone git clone the repository",
-                    "3. Each person creates their own branch: git checkout -b <branch-name>",
-                    "4. Make changes, then git add . → git commit -m 'message'",
-                    "5. Push branch to remote: git push origin <branch-name>",
+                    "2. Everyone `git clone` the repository",
+                    "3. Each person creates their own branch: `git checkout -b <branch-name>`",
+                    "4. Make changes, then `git add .` → `git commit -m 'message'`",
+                    "5. Push branch to remote: `git push origin <branch-name>`",
                     "6. Create a Pull Request on GitHub, request a review, then merge",
-                    "7. Simulation complete — all changes successfully merged into main ✓",
+                    "7. Simulation complete — all changes successfully merged into `main` ✓",
                   ],
                   id: [
                     "1. Buat repo GitHub baru, undang kolaborator",
-                    "2. Setiap orang git clone repository tersebut",
-                    "3. Buat branch masing-masing: git checkout -b <nama-branch>",
-                    "4. Kerjakan perubahan, lalu git add . → git commit -m 'pesan'",
-                    "5. Push branch ke remote: git push origin <nama-branch>",
+                    "2. Setiap orang `git clone` repository tersebut",
+                    "3. Buat branch masing-masing: `git checkout -b <nama-branch>`",
+                    "4. Kerjakan perubahan, lalu `git add .` → `git commit -m 'pesan'`",
+                    "5. Push branch ke remote: `git push origin <nama-branch>`",
                     "6. Buat Pull Request di GitHub, minta review, lalu merge",
-                    "7. Simulasi selesai — semua perubahan berhasil digabungkan ke main ✓",
+                    "7. Simulasi selesai — semua perubahan berhasil digabungkan ke `main` ✓",
                   ]
                 }
               },
@@ -653,6 +674,49 @@ const modules = [
 ];
 
 // ─── MATERI CARDS ─────────────────────────────────────────────────────────────
+
+// Helper: convert `backtick text` → <code> elements
+// Also converts [[term]] → <span class="materi-term"> for named concepts
+function _parseInlineCode(text) {
+  return text
+    .replace(/`([^`]+)`/g, '<code class="materi-code">$1</code>')
+    .replace(/\[\[([^\]]+)\]\]/g, '<span class="materi-term">$1</span>');
+}
+
+// Helper: detect callout emoji prefix → CSS class name or null
+function _calloutClass(text) {
+  if (text.startsWith('⚠️')) return 'warn';
+  if (text.startsWith('❌')) return 'cross';
+  if (text.startsWith('⭐')) return 'star';
+  return null;
+}
+
+// Render a single bullet/callout item
+function _renderItem(p) {
+  const safe = _parseInlineCode(p);
+  const cls  = _calloutClass(p);
+  if (cls) return `<div class="materi-callout materi-callout-${cls}">${safe}</div>`;
+  return `<li>${safe}</li>`;
+}
+
+// Render items array — mixes <li> inside <ul> and standalone callout <div>s
+function _renderItems(items) {
+  let html = '';
+  let inUl  = false;
+  for (const p of items) {
+    const isCallout = _calloutClass(p) !== null;
+    if (isCallout) {
+      if (inUl) { html += '</ul>'; inUl = false; }
+      html += _renderItem(p);
+    } else {
+      if (!inUl) { html += '<ul class="materi-points">'; inUl = true; }
+      html += _renderItem(p);
+    }
+  }
+  if (inUl) html += '</ul>';
+  return html;
+}
+
 function _buildContentHTML(s, lang) {
   if (!s) return '';
   const hasSections = s.sections && s.sections.length > 0;
@@ -662,18 +726,57 @@ function _buildContentHTML(s, lang) {
       const title = (sec.title && typeof sec.title === 'object')
         ? (sec.title[currentLang] || sec.title.en)
         : sec.title;
+      const iconHTML = sec.icon ? `<span class="materi-section-icon">${sec.icon}</span>` : '';
+
+      // ── Table type ────────────────────────────────────────────
+      if (sec.type === 'table') {
+        const rawHeaders = sec.headers;
+        const headers = (rawHeaders && !Array.isArray(rawHeaders))
+          ? (rawHeaders[currentLang] || rawHeaders.en || [])
+          : (rawHeaders || []);
+        const rows = sec.rows || [];
+        const tableHTML = `
+          <table class="materi-table">
+            <thead><tr>${headers.map(h => `<th>${_parseInlineCode(h)}</th>`).join('')}</tr></thead>
+            <tbody>${rows.map(row => `<tr>${row.map(cell => `<td>${_parseInlineCode(cell)}</td>`).join('')}</tr>`).join('')}</tbody>
+          </table>`;
+        return `
+        <div class="materi-section">
+          <div class="materi-section-title">${iconHTML}${title}</div>
+          <div class="materi-section-body materi-section-body--table">${tableHTML}</div>
+        </div>`;
+      }
+
+      // ── Steps type ────────────────────────────────────────────
+      if (sec.type === 'steps') {
+        const rawItems = sec.items;
+        const items = (rawItems && !Array.isArray(rawItems))
+          ? (rawItems[currentLang] || rawItems.en || [])
+          : (rawItems || []);
+        const stepsHTML = `<div class="materi-steps">${items.map((p, i) => {
+          const text = _parseInlineCode(p.replace(/^\d+\.\s*/, ''));
+          return `<div class="materi-step"><div class="materi-step-num">${i + 1}</div><div class="materi-step-text">${text}</div></div>`;
+        }).join('')}</div>`;
+        return `
+        <div class="materi-section">
+          <div class="materi-section-title">${iconHTML}${title}</div>
+          <div class="materi-section-body">${stepsHTML}</div>
+        </div>`;
+      }
+
+      // ── Default: bullet list with callout detection ───────────
       const rawItems = sec.items;
       const items = (rawItems && !Array.isArray(rawItems))
         ? (rawItems[currentLang] || rawItems.en || [])
         : (rawItems || []);
       return `
       <div class="materi-section">
-        <div class="materi-section-title">${title}</div>
-        <ul class="materi-points">${items.map(p => `<li>${p}</li>`).join('')}</ul>
+        <div class="materi-section-title">${iconHTML}${title}</div>
+        <div class="materi-section-body">${_renderItems(items)}</div>
       </div>`;
     }).join('');
   } else if (hasPoints) {
-    return `<ul class="materi-points">${s.points.map(p => `<li>${p}</li>`).join('')}</ul>`;
+    return `<ul class="materi-points">${s.points.map(p => `<li>${_parseInlineCode(p)}</li>`).join('')}</ul>`;
   }
   return `<div class="materi-empty"><span>${lang['materi.coming']}</span><p>${lang['materi.desc']}</p></div>`;
 }
@@ -734,10 +837,16 @@ function renderMateri() {
   const w = activeModule.weeks[state.weekIdx] || activeModule.weeks[0];
   const s = w ? (w.sessions[state.sessionIdx] || w.sessions[0]) : null;
 
+  const lecNum  = s ? `<span class="materi-lec-badge">Lecture ${s.num}</span>` : '';
+  const lecDate = (s && s.date) ? `<span class="materi-date-badge">${s.date}</span>` : '';
+  const metaLine = (lecNum || lecDate) ? `<div class="materi-content-meta">${lecNum}${lecDate}</div>` : '';
   const panelHTML = `
     <div class="materi-content" id="materiContent">
       <div class="materi-content-inner">
-        <h2 class="materi-content-title">${s ? s.title : ''}</h2>
+        <div class="materi-lecture-header">
+          ${metaLine}
+          <h2 class="materi-content-title">${s ? s.title : ''}</h2>
+        </div>
         <div class="materi-sections-wrap">${_buildContentHTML(s, lang)}</div>
       </div>
     </div>`;
@@ -747,7 +856,6 @@ function renderMateri() {
   container.innerHTML = tabsHTML + `
     <div class="materi-layout">
       <div class="materi-nav-wrap${isNavCollapsed ? ' collapsed' : ''}" id="materiNavWrap">
-        <aside class="materi-nav">${navHTML}</aside>
         <button class="materi-nav-collapser" onclick="toggleMateriNav()" title="Toggle sidebar">
           <svg class="materi-nav-collapser-icon" xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
@@ -755,6 +863,7 @@ function renderMateri() {
             <polyline points="15 18 9 12 15 6"/>
           </svg>
         </button>
+        <aside class="materi-nav">${navHTML}</aside>
       </div>
       ${panelHTML}
     </div>`;

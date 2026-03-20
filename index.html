@@ -1,122 +1,124 @@
 <!DOCTYPE html>
 
 <html data-lang="en" data-theme="dark" lang="en">
-<head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Team 2 Seoul · FSSE RevoU</title>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
-<link href="css/style.css" rel="stylesheet"/>
-</head>
-<body>
-<!-- ═══ NAVBAR ═══ -->
-<nav class="navbar" id="navbar">
-<div class="nav-inner">
-<a class="nav-brand" href="#home">
-<div class="brand-mark">T2</div>
-<div class="brand-text">
-<span class="brand-name">Team 2</span>
-<span class="brand-sub">FSSE Seoul</span>
-</div>
-</a>
-<ul class="nav-links" id="navLinks">
-<li><a class="nav-link active" data-i18n="nav.home" href="index.html">Home</a></li>
-<li><a class="nav-link" data-i18n="nav.about" href="html/about.html">About</a></li>
-<li><a class="nav-link" data-i18n="nav.materi" href="html/materials.html">Materials</a></li>
-<li><a class="nav-link" data-i18n="nav.game" href="html/quiz.html">Quiz</a></li>
-<li><a class="nav-link nav-rec" data-i18n="nav.recordings" href="html/recordings.html">Recordings ↗</a></li>
-</ul>
-<div class="nav-actions">
-<div class="lang-switcher" id="langSwitcher">
-<button class="lang-btn active" data-lang="en" onclick="setLang('en')">EN</button>
-<button class="lang-btn" data-lang="id" onclick="setLang('id')">ID</button>
-</div>
-<button class="theme-btn-nav" onclick="toggleTheme()" title="Switch theme">
-<svg class="icon-moon" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
-<svg class="icon-sun" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 3v1m0 16v1m8.66-9h-1M4.34 12h-1m15.07-6.07-.71.71M6.34 17.66l-.71.71m12.02 0-.71-.71M6.34 6.34l-.71-.71M12 7a5 5 0 1 0 0 10A5 5 0 0 0 12 7z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
-</button>
-<button aria-label="Menu" class="hamburger" id="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></button>
-</div>
-</div>
-</nav>
-<!-- mobile menu -->
-<div class="mobile-menu" id="mobileMenu">
-<a class="mob-link active" data-i18n="nav.home" href="index.html" onclick="toggleMenu()">Home</a>
-<a class="mob-link" data-i18n="nav.about" href="html/about.html" onclick="toggleMenu()">About</a>
-<a class="mob-link" data-i18n="nav.materi" href="html/materials.html" onclick="toggleMenu()">Materials</a>
-<a class="mob-link" data-i18n="nav.game" href="html/quiz.html" onclick="toggleMenu()">Quiz</a>
-<a class="mob-link" data-i18n="nav.recordings" href="html/recordings.html">Recordings</a>
-<div class="mob-lang">
-<button class="lang-btn active" data-lang="en" onclick="setLang('en');toggleMenu()">EN</button>
-<button class="lang-btn" data-lang="id" onclick="setLang('id');toggleMenu()">ID</button>
-</div>
-</div>
-<!-- ═══ SCROLL SNAP CONTAINER ═══ -->
-<main id="snap-main">
-<!-- ═══ HERO — two-column ═══ -->
-<section class="hero" id="home">
-<div class="hero-inner">
-<div class="hero-left">
-<div class="hero-eyebrow">
-<span class="eyebrow-dot"></span>
-          FSSE RevoU  ·  Section Seoul
+  <head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Team 2 Seoul · FSSE RevoU</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+    <link href="css/style.css" rel="stylesheet"/>
+  </head>
+  <body>
+    <!-- ═══ NAVBAR ═══ -->
+    <nav class="navbar" id="navbar">
+      <div class="nav-inner">
+        <a class="nav-brand" href="#home">
+          <div class="brand-mark">T2</div>
+          <div class="brand-text">
+          <span class="brand-name">Team 2</span>
+          <span class="brand-sub">FSSE Seoul</span>
+          </div>
+        </a>
+        <ul class="nav-links" id="navLinks">
+          <li><a class="nav-link active" data-i18n="nav.home" href="index.html">Home</a></li>
+          <li><a class="nav-link" data-i18n="nav.about" href="html/about.html">About</a></li>
+          <li><a class="nav-link" data-i18n="nav.materi" href="html/materials.html">Materials</a></li>
+          <!-- <li><a class="nav-link" data-i18n="nav.game" href="html/quiz.html">Quiz</a></li> -->
+          <li><a class="nav-link nav-rec" data-i18n="nav.recordings" href="html/recordings.html">Recordings ↗</a></li>
+        </ul>
+        <div class="nav-actions">
+          <div class="lang-switcher" id="langSwitcher">
+            <button class="lang-btn active" data-lang="en" onclick="setLang('en')">EN</button>
+            <button class="lang-btn" data-lang="id" onclick="setLang('id')">ID</button>
+          </div>
+          <button class="theme-btn-nav" onclick="toggleTheme()" title="Switch theme">
+            <svg class="icon-moon" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+            <svg class="icon-sun" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 3v1m0 16v1m8.66-9h-1M4.34 12h-1m15.07-6.07-.71.71M6.34 17.66l-.71.71m12.02 0-.71-.71M6.34 6.34l-.71-.71M12 7a5 5 0 1 0 0 10A5 5 0 0 0 12 7z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+          </button>
+          <button aria-label="Menu" class="hamburger" id="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></button>
         </div>
-<h1 class="hero-heading">
-<span data-i18n="hero.title">TEAM 2</span>
-</h1>
-<p class="hero-sub" data-i18n="hero.sub">Recordings, materials, and quiz — all in one place, built for you.</p>
-<div class="hero-ctas">
-<a class="btn-primary" href="html/recordings.html">
-<svg fill="currentColor" height="16" viewbox="0 0 24 24" width="16" xmlns="http://www.w3.org/2000/svg"><path d="M8 5v14l11-7z"></path></svg>
-<span data-i18n="hero.cta1">Watch Recordings</span>
-</a>
-<a class="btn-ghost" href="html/materials.html">
-<svg fill="none" height="16" stroke="currentColor" viewbox="0 0 24 24" width="16" xmlns="http://www.w3.org/2000/svg"><path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
-<span data-i18n="hero.cta2">Browse Materials</span>
-</a>
-</div>
-</div>
-<div class="hero-right">
-<a class="hcard" href="html/recordings.html">
-<div class="hcard-icon hcard-icon-rec">
-<svg fill="currentColor" height="20" viewbox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M8 5v14l11-7z"></path></svg>
-</div>
-<div class="hcard-body">
-<span class="hcard-title" data-i18n="hero.feat.rec">Recordings</span>
-<span class="hcard-sub" data-i18n="hero.feat.rec.sub">Replay past sessions</span>
-</div>
-<svg class="hcard-arrow" fill="none" height="16" stroke="currentColor" viewbox="0 0 24 24" width="16" xmlns="http://www.w3.org/2000/svg"><path d="M9 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
-</a>
-<a class="hcard" href="html/materials.html">
-<div class="hcard-icon hcard-icon-materi">
-<svg fill="none" height="20" stroke="currentColor" viewbox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
-</div>
-<div class="hcard-body">
-<span class="hcard-title" data-i18n="hero.feat.materi">Materials</span>
-<span class="hcard-sub" data-i18n="hero.feat.materi.sub">Notes &amp; key points</span>
-</div>
-<svg class="hcard-arrow" fill="none" height="16" stroke="currentColor" viewbox="0 0 24 24" width="16" xmlns="http://www.w3.org/2000/svg"><path d="M9 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
-</a>
-<a class="hcard" href="html/quiz.html">
-<div class="hcard-icon hcard-icon-quiz">
-<svg fill="none" height="20" stroke="currentColor" viewbox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
-</div>
-<div class="hcard-body">
-<span class="hcard-title" data-i18n="hero.feat.quiz">Quiz</span>
-<span class="hcard-sub" data-i18n="hero.feat.quiz.sub">Test your skills</span>
-</div>
-<svg class="hcard-arrow" fill="none" height="16" stroke="currentColor" viewbox="0 0 24 24" width="16" xmlns="http://www.w3.org/2000/svg"><path d="M9 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
-</a>
-</div>
-</div>
-</section>
-<!-- ═══ FOOTER ═══ -->
-<footer class="footer-main">
-<div class="footer-inner">
-<span data-i18n="footer.text">TL Simulation · Team 2 · FSSE Seoul · © 2026</span>
-</div>
-</footer>
-</main><!-- /snap-main -->
-<script src="js/shared.js"></script>
-</body>
+      </div>
+    </nav>
+    <!-- mobile menu -->
+    <div class="mobile-menu" id="mobileMenu">
+      <a class="mob-link active" data-i18n="nav.home" href="index.html" onclick="toggleMenu()">Home</a>
+      <a class="mob-link" data-i18n="nav.about" href="html/about.html" onclick="toggleMenu()">About</a>
+      <a class="mob-link" data-i18n="nav.materi" href="html/materials.html" onclick="toggleMenu()">Materials</a>
+      <!-- <a class="mob-link" data-i18n="nav.game" href="html/quiz.html" onclick="toggleMenu()">Quiz</a> -->
+      <a class="mob-link" data-i18n="nav.recordings" href="html/recordings.html" onclick="toggleMenu()">Recordings</a>
+      <div class="mob-lang">
+        <button class="lang-btn active" data-lang="en" onclick="setLang('en');toggleMenu()">EN</button>
+        <button class="lang-btn" data-lang="id" onclick="setLang('id');toggleMenu()">ID</button>
+      </div>
+    </div>
+    <!-- ═══ SCROLL SNAP CONTAINER ═══ -->
+    <main id="snap-main">
+      <!-- ═══ HERO — two-column ═══ -->
+      <section class="hero" id="home">
+        <div class="hero-inner">
+          <div class="hero-left">
+            <div class="hero-eyebrow">
+              <span class="eyebrow-dot"></span>
+              FSSE RevoU  ·  Section Seoul
+            </div>
+            <h1 class="hero-heading">
+              <span data-i18n="hero.title">TEAM 2</span>
+            </h1>
+            <p class="hero-sub" data-i18n="hero.sub">Recordings, materials, and quiz — all in one place, built for you.</p>
+            <div class="hero-ctas">
+              <a class="btn-primary" href="html/recordings.html">
+                <svg fill="currentColor" height="16" viewbox="0 0 24 24" width="16" xmlns="http://www.w3.org/2000/svg"><path d="M8 5v14l11-7z"></path></svg>
+                <span data-i18n="hero.cta1">Watch Recordings</span>
+              </a>
+              <a class="btn-ghost" href="html/materials.html">
+                <svg fill="none" height="16" stroke="currentColor" viewbox="0 0 24 24" width="16" xmlns="http://www.w3.org/2000/svg"><path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+                <span data-i18n="hero.cta2">Browse Materials</span>
+              </a>
+            </div>
+          </div>
+          <div class="hero-right">
+            <a class="hcard" href="html/recordings.html">
+              <div class="hcard-icon hcard-icon-rec">
+                <svg fill="currentColor" height="20" viewbox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M8 5v14l11-7z"></path></svg>
+              </div>
+              <div class="hcard-body">
+                <span class="hcard-title" data-i18n="hero.feat.rec">Recordings</span>
+                <span class="hcard-sub" data-i18n="hero.feat.rec.sub">Replay past sessions</span>
+              </div>
+              <svg class="hcard-arrow" fill="none" height="16" stroke="currentColor" viewbox="0 0 24 24" width="16" xmlns="http://www.w3.org/2000/svg"><path d="M9 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+            </a>
+            <a class="hcard" href="html/materials.html">
+              <div class="hcard-icon hcard-icon-materi">
+                <svg fill="none" height="20" stroke="currentColor" viewbox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+              </div>
+              <div class="hcard-body">
+                <span class="hcard-title" data-i18n="hero.feat.materi">Materials</span>
+                <span class="hcard-sub" data-i18n="hero.feat.materi.sub">Notes &amp; key points</span>
+              </div>
+              <svg class="hcard-arrow" fill="none" height="16" stroke="currentColor" viewbox="0 0 24 24" width="16" xmlns="http://www.w3.org/2000/svg"><path d="M9 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+            </a>
+            <!-- quiz card hidden
+            <a class="hcard" href="html/quiz.html">
+              <div class="hcard-icon hcard-icon-quiz">
+                <svg fill="none" height="20" stroke="currentColor" viewbox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+              </div>
+              <div class="hcard-body">
+                <span class="hcard-title" data-i18n="hero.feat.quiz">Quiz</span>
+                <span class="hcard-sub" data-i18n="hero.feat.quiz.sub">Test your skills</span>
+              </div>
+              <svg class="hcard-arrow" fill="none" height="16" stroke="currentColor" viewbox="0 0 24 24" width="16" xmlns="http://www.w3.org/2000/svg"><path d="M9 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+            </a>
+            -->
+          </div>
+        </div>
+      </section>
+      <!-- ═══ FOOTER ═══ -->
+      <footer class="footer-main">
+        <div class="footer-inner">
+          <span data-i18n="footer.text">TL Simulation · Team 2 · FSSE Seoul · © 2026</span>
+        </div>
+      </footer>
+    </main><!-- /snap-main -->
+    <script src="js/shared.js"></script>
+  </body>
 </html>
