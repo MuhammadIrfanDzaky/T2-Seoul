@@ -4,10 +4,15 @@ const recordings = [
     { date: "04 Mar 2026", title: "Git Collaborations", link: "https://youtu.be/7_E8M9D5PRc", videoId: "7_E8M9D5PRc" },
     { date: "07 Mar 2026", title: "Module 1 Assignment & HTML", link: "https://youtu.be/4H-nEXL9rjU", videoId: "4H-nEXL9rjU" },
     { date: "10 Mar 2026", title: "Intro to CSS & CSS Box Model",     link: "https://youtu.be/R8T7LHROiVw", videoId: "R8T7LHROiVw" },
-    { date: "13 Mar 2026", title: "CSS Flexbox & Grid and Responsive Web Page",  link: "https://youtu.be/vi_HT2nsyrI", videoId: "vi_HT2nsyrI" },
-    // { date: "05 Mar 2026", title: "REST API & Fetch",             link: "https://youtu.be/dQw4w9WgXcQ", videoId: "dQw4w9WgXcQ" },
+    { date: "14 Mar 2026", title: "CSS Flexbox & Grid and Responsive Web Page",  link: "https://youtu.be/vi_HT2nsyrI", videoId: "vi_HT2nsyrI" },
+    { date: "17 Mar 2026", title: "Intro to Tailwind CSS", link: "https://youtu.be/YZrRU4ulVRc", videoId: "YZrRU4ulVRc" },
     // { date: "07 Mar 2026", title: "Database & SQL Basics",        link: "https://youtu.be/dQw4w9WgXcQ", videoId: "dQw4w9WgXcQ" },
     // { date: "10 Mar 2026", title: "Authentication & JWT",         link: "https://youtu.be/dQw4w9WgXcQ", videoId: "dQw4w9WgXcQ" },
+    // { date: "12 Mar 2026", title: "Deployment & CI/CD Overview",  link: "https://youtu.be/dQw4w9WgXcQ", videoId: "dQw4w9WgXcQ" },
+    // { date: "12 Mar 2026", title: "Deployment & CI/CD Overview",  link: "https://youtu.be/dQw4w9WgXcQ", videoId: "dQw4w9WgXcQ" },
+    // { date: "12 Mar 2026", title: "Deployment & CI/CD Overview",  link: "https://youtu.be/dQw4w9WgXcQ", videoId: "dQw4w9WgXcQ" },
+    // { date: "12 Mar 2026", title: "Deployment & CI/CD Overview",  link: "https://youtu.be/dQw4w9WgXcQ", videoId: "dQw4w9WgXcQ" },
+    // { date: "12 Mar 2026", title: "Deployment & CI/CD Overview",  link: "https://youtu.be/dQw4w9WgXcQ", videoId: "dQw4w9WgXcQ" },
     // { date: "12 Mar 2026", title: "Deployment & CI/CD Overview",  link: "https://youtu.be/dQw4w9WgXcQ", videoId: "dQw4w9WgXcQ" },
 ];
 
