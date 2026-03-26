@@ -6,7 +6,7 @@ const recordings = [
     { date: "10 Mar 2026", title: "Intro to CSS & CSS Box Model",     link: "https://youtu.be/R8T7LHROiVw", videoId: "R8T7LHROiVw" },
     { date: "14 Mar 2026", title: "CSS Flexbox & Grid and Responsive Web Page",  link: "https://youtu.be/vi_HT2nsyrI", videoId: "vi_HT2nsyrI" },
     { date: "17 Mar 2026", title: "Intro to Tailwind CSS", link: "https://youtu.be/YZrRU4ulVRc", videoId: "YZrRU4ulVRc" },
-    // { date: "07 Mar 2026", title: "Database & SQL Basics",        link: "https://youtu.be/dQw4w9WgXcQ", videoId: "dQw4w9WgXcQ" },
+    { date: "26 Mar 2026", title: "Styling Animations with Tailwind & AI for Styling CSS", link: "https://youtu.be/B5Fnq1A-nwc", videoId: "B5Fnq1A-nwc" },
     // { date: "10 Mar 2026", title: "Authentication & JWT",         link: "https://youtu.be/dQw4w9WgXcQ", videoId: "dQw4w9WgXcQ" },
     // { date: "12 Mar 2026", title: "Deployment & CI/CD Overview",  link: "https://youtu.be/dQw4w9WgXcQ", videoId: "dQw4w9WgXcQ" },
     // { date: "12 Mar 2026", title: "Deployment & CI/CD Overview",  link: "https://youtu.be/dQw4w9WgXcQ", videoId: "dQw4w9WgXcQ" },
