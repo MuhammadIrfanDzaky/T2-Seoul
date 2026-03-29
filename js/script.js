@@ -1,42 +1,28 @@
 const recordings = [
-    { date: "25 Feb 2026", title: "Code Editor & Markdown", link: "https://youtu.be/y7OiHn0ZtJo", videoId: "y7OiHn0ZtJo" },
-    { date: "28 Feb 2026", title: "Terminal, CLI, and GIT", link: "https://youtu.be/fQD3B3TPdo0", videoId: "fQD3B3TPdo0" },
-    { date: "04 Mar 2026", title: "Git Collaborations", link: "https://youtu.be/7_E8M9D5PRc", videoId: "7_E8M9D5PRc" },
-    { date: "07 Mar 2026", title: "Module 1 Assignment & HTML", link: "https://youtu.be/4H-nEXL9rjU", videoId: "4H-nEXL9rjU" },
-    { date: "10 Mar 2026", title: "Intro to CSS & CSS Box Model",     link: "https://youtu.be/R8T7LHROiVw", videoId: "R8T7LHROiVw" },
-    { date: "14 Mar 2026", title: "CSS Flexbox & Grid and Responsive Web Page",  link: "https://youtu.be/vi_HT2nsyrI", videoId: "vi_HT2nsyrI" },
-    { date: "17 Mar 2026", title: "Intro to Tailwind CSS", link: "https://youtu.be/YZrRU4ulVRc", videoId: "YZrRU4ulVRc" },
-    { date: "26 Mar 2026", title: "Styling Animations with Tailwind & AI for Styling CSS", link: "https://youtu.be/B5Fnq1A-nwc", videoId: "B5Fnq1A-nwc" },
-    // { date: "10 Mar 2026", title: "Authentication & JWT",         link: "https://youtu.be/dQw4w9WgXcQ", videoId: "dQw4w9WgXcQ" },
-    // { date: "12 Mar 2026", title: "Deployment & CI/CD Overview",  link: "https://youtu.be/dQw4w9WgXcQ", videoId: "dQw4w9WgXcQ" },
-    // { date: "12 Mar 2026", title: "Deployment & CI/CD Overview",  link: "https://youtu.be/dQw4w9WgXcQ", videoId: "dQw4w9WgXcQ" },
-    // { date: "12 Mar 2026", title: "Deployment & CI/CD Overview",  link: "https://youtu.be/dQw4w9WgXcQ", videoId: "dQw4w9WgXcQ" },
-    // { date: "12 Mar 2026", title: "Deployment & CI/CD Overview",  link: "https://youtu.be/dQw4w9WgXcQ", videoId: "dQw4w9WgXcQ" },
-    // { date: "12 Mar 2026", title: "Deployment & CI/CD Overview",  link: "https://youtu.be/dQw4w9WgXcQ", videoId: "dQw4w9WgXcQ" },
-    // { date: "12 Mar 2026", title: "Deployment & CI/CD Overview",  link: "https://youtu.be/dQw4w9WgXcQ", videoId: "dQw4w9WgXcQ" },
+    { date: "25 Feb 2026", title: "Code Editor & Markdown",                                 link: "https://youtu.be/y7OiHn0ZtJo", videoId: "y7OiHn0ZtJo", category: "tl" },
+    { date: "28 Feb 2026", title: "Terminal, CLI, and GIT",                                 link: "https://youtu.be/fQD3B3TPdo0", videoId: "fQD3B3TPdo0", category: "tl" },
+    { date: "04 Mar 2026", title: "Git Collaborations",                                     link: "https://youtu.be/7_E8M9D5PRc", videoId: "7_E8M9D5PRc", category: "tl" },
+    { date: "07 Mar 2026", title: "Module 1 Assignment & HTML",                             link: "https://youtu.be/4H-nEXL9rjU", videoId: "4H-nEXL9rjU", category: "tl" },
+    { date: "07 Mar 2026", title: "Pull Requests and How To Solve Conflict",                link: "https://youtu.be/xOUenUwihC8", videoId: "xOUenUwihC8", category: "other" },
+    { date: "10 Mar 2026", title: "Intro to CSS & CSS Box Model",                           link: "https://youtu.be/R8T7LHROiVw", videoId: "R8T7LHROiVw", category: "tl" },
+    { date: "14 Mar 2026", title: "CSS Flexbox & Grid and Responsive Web Page",             link: "https://youtu.be/vi_HT2nsyrI", videoId: "vi_HT2nsyrI", category: "tl" },
+    { date: "17 Mar 2026", title: "Intro to Tailwind CSS",                                  link: "https://youtu.be/YZrRU4ulVRc", videoId: "YZrRU4ulVRc", category: "tl" },
+    { date: "26 Mar 2026", title: "Styling Animations with Tailwind & AI for Styling CSS",  link: "https://youtu.be/B5Fnq1A-nwc", videoId: "B5Fnq1A-nwc", category: "tl" },
+    { date: "28 Mar 2026", title: "Breakout Room Sprint Review Module 2",                   link: "https://youtu.be/62RxlLrD5OU", videoId: "62RxlLrD5OU", category: "sprint" },
+    
 ];
+
+// Category display order
+const CAT_ORDER = ['tl', 'sprint', 'other'];
 
 function thumb(id) {
     return `https://img.youtube.com/vi/${id}/mqdefault.jpg`;
 }
 
-function renderCards(data) {
-    const grid = document.getElementById('cardGrid');
-    document.getElementById('totalCount').textContent = data.length;
-    if (!data.length) {
-        grid.innerHTML = `
-        <div class="empty">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
-                d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
-            </svg>
-            Rekamannya gaada guyss!
-        </div>`;
-        return;
-    }
-    grid.innerHTML = data.map((r, i) => `
+function renderCard(r, idx) {
+    return `
         <div class="card">
-        <div class="card-num">#${String(i + 1).padStart(2, '0')}</div>
+        <div class="card-num">#${String(idx).padStart(2, '0')}</div>
         <div class="thumb">
             <img src="${thumb(r.videoId)}" alt="${r.title}" loading="lazy"
             onerror="this.style.visibility='hidden'"/>
@@ -57,8 +43,44 @@ function renderCards(data) {
             ${i18n[currentLang]['rec.watch']}
             </a>
         </div>
-        </div>
-    `).join('');
+        </div>`;
+}
+
+function renderCards(data) {
+    const grid = document.getElementById('cardGrid');
+    document.getElementById('totalCount').textContent = data.length;
+    if (!data.length) {
+        grid.innerHTML = `
+        <div class="empty">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+            Rekamannya gaada guyss!
+        </div>`;
+        return;
+    }
+
+    // Group by category
+    const groups = { tl: [], sprint: [], other: [] };
+    data.forEach(r => { (groups[r.category || 'other']).push(r); });
+
+    let globalIdx = 0;
+    grid.innerHTML = CAT_ORDER
+        .filter(cat => groups[cat].length > 0)
+        .map(cat => {
+            const label = i18n[currentLang]['cat.' + cat];
+            const count = groups[cat].length;
+            const cards = groups[cat].map(r => renderCard(r, ++globalIdx)).join('');
+            return `
+            <div class="rec-big-card" data-cat="${cat}">
+                <div class="rec-big-card-header">
+                    <div class="rec-big-card-title">${label}</div>
+                    <span class="rec-big-card-count">${count}</span>
+                </div>
+                <div class="rec-cat-grid">${cards}</div>
+            </div>`;
+        }).join('');
 }
 
 // syncs both desktop & mobile search inputs
@@ -82,6 +104,9 @@ const i18n = {
         'rec.sub':        'Replay every session at your own pace.',
         'rec.count':      'recordings',
         'rec.watch':      'Watch Recording',
+        'cat.tl':         'TL Simulations',
+        'cat.sprint':     'Sprint Review',
+        'cat.other':      'Other Videos',
         'footer.text':    'TL Simulation \u00b7 Team 2 \u00b7 FSSE Seoul \u00b7 \u00a9 2026',
     },
     id: {
@@ -94,6 +119,9 @@ const i18n = {
         'rec.sub':        'Tonton ulang setiap sesi sesukamu.',
         'rec.count':      'rekaman',
         'rec.watch':      'Tonton Rekaman',
+        'cat.tl':         'Simulasi TL',
+        'cat.sprint':     'Sprint Review',
+        'cat.other':      'Video Lainnya',
         'footer.text':    'TL Simulation \u00b7 Team 2 \u00b7 FSSE Seoul \u00b7 \u00a9 2026',
     }
 };

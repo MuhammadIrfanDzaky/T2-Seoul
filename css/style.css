@@ -1388,6 +1388,61 @@ html.sub-page .navbar { background: var(--bg); border-color: var(--border); }
 @media (min-width: 480px)  and (max-width: 759px)  { .grid { grid-template-columns: repeat(2, 1fr); gap: 10px; } }
 @media (max-width: 479px)  { .grid { grid-template-columns: 1fr; gap: 10px; } }
 
+/* ─── Recordings – category big cards ──────────────────────────── */
+.rec-grid {
+  display: flex; flex-direction: column; gap: 24px;
+}
+.rec-big-card {
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  overflow: hidden;
+  background: var(--surface);
+}
+.rec-big-card[data-cat="tl"] {
+  border-color: color-mix(in srgb, var(--accent) 35%, var(--border));
+}
+.rec-big-card[data-cat="sprint"] {
+  border-color: color-mix(in srgb, #60a5fa 30%, var(--border));
+}
+.rec-big-card-header {
+  display: flex; align-items: center; gap: 12px;
+  padding: 16px 22px;
+  border-bottom: 1px solid var(--border);
+  background: color-mix(in srgb, var(--surface) 60%, var(--bg));
+}
+.rec-big-card[data-cat="tl"]     .rec-big-card-header { background: color-mix(in srgb, var(--accent) 6%, var(--surface)); border-bottom-color: color-mix(in srgb, var(--accent) 25%, var(--border)); }
+.rec-big-card[data-cat="sprint"] .rec-big-card-header { background: color-mix(in srgb, #60a5fa 6%, var(--surface)); border-bottom-color: color-mix(in srgb, #60a5fa 22%, var(--border)); }
+.rec-big-card-title {
+  font-size: 13px; font-weight: 800; letter-spacing: .08em;
+  text-transform: uppercase; color: var(--badge-txt);
+}
+.rec-big-card[data-cat="sprint"] .rec-big-card-title { color: #93c5fd; }
+.rec-big-card[data-cat="other"]  .rec-big-card-title { color: var(--text-2); }
+.rec-big-card-count {
+  font-size: 11px; font-weight: 700;
+  padding: 3px 10px; border-radius: 20px;
+  background: var(--accent-bg); color: var(--badge-txt);
+  border: 1px solid color-mix(in srgb, var(--accent) 30%, transparent);
+}
+.rec-big-card[data-cat="sprint"] .rec-big-card-count {
+  background: color-mix(in srgb, #60a5fa 10%, var(--surface));
+  border-color: color-mix(in srgb, #60a5fa 30%, transparent);
+  color: #93c5fd;
+}
+.rec-big-card[data-cat="other"] .rec-big-card-count {
+  background: var(--surface); border-color: var(--border); color: var(--text-3);
+}
+.rec-cat-grid {
+  display: grid; gap: 14px;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  padding: 20px 22px;
+}
+@media (min-width: 1400px) { .rec-cat-grid { grid-template-columns: repeat(5, 1fr); } }
+@media (min-width: 1100px) and (max-width: 1399px) { .rec-cat-grid { grid-template-columns: repeat(4, 1fr); } }
+@media (min-width: 760px)  and (max-width: 1099px) { .rec-cat-grid { grid-template-columns: repeat(3, 1fr); } }
+@media (min-width: 480px)  and (max-width: 759px)  { .rec-cat-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; } }
+@media (max-width: 479px)  { .rec-cat-grid { grid-template-columns: 1fr; gap: 10px; } }
+
 .card {
   background: var(--bg); border: 1px solid var(--border);
   border-radius: 12px; overflow: hidden;
