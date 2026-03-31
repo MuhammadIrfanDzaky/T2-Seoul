@@ -10,6 +10,7 @@ const recordings = [
     { date: "17 Mar 2026", title: "Intro to Tailwind CSS",                                  link: "https://youtu.be/YZrRU4ulVRc", videoId: "YZrRU4ulVRc", category: "tl" },
     { date: "26 Mar 2026", title: "Styling Animations with Tailwind & AI for Styling CSS",  link: "https://youtu.be/B5Fnq1A-nwc", videoId: "B5Fnq1A-nwc", category: "tl" },
     { date: "28 Mar 2026", title: "Breakout Room Sprint Review Module 2",                   link: "https://youtu.be/62RxlLrD5OU", videoId: "62RxlLrD5OU", category: "sprint" },
+    { date: "31 Mar 2026", title: "Assymetrical Grid",                                      link: "https://youtu.be/eETFgE8DQ20", videoId: "eETFgE8DQ20", category: "other" },
 ];
 
 // Category display order
