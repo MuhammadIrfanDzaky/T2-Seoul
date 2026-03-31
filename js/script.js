@@ -5,11 +5,11 @@ const recordings = [
     { date: "07 Mar 2026", title: "Module 1 Assignment & HTML",                             link: "https://youtu.be/4H-nEXL9rjU", videoId: "4H-nEXL9rjU", category: "tl" },
     { date: "07 Mar 2026", title: "Pull Requests and How To Solve Conflict",                link: "https://youtu.be/xOUenUwihC8", videoId: "xOUenUwihC8", category: "other" },
     { date: "10 Mar 2026", title: "Intro to CSS & CSS Box Model",                           link: "https://youtu.be/R8T7LHROiVw", videoId: "R8T7LHROiVw", category: "tl" },
-    { date: "14 Mar 2026", title: "CSS Flexbox & Grid and Responsive Web Page",             link: "https://youtu.be/vi_HT2nsyrI", videoId: "vi_HT2nsyrI", category: "tl" },
+    { date: "12 Mar 2026", title: "CSS Flexbox & Grid and Responsive Web Page",             link: "https://youtu.be/vi_HT2nsyrI", videoId: "vi_HT2nsyrI", category: "tl" },
+    { date: "12 Mar 2026", title: "Tutorial Live Share VSCode",                             link: "https://youtu.be/pspGdOcfNbQ", videoId: "pspGdOcfNbQ", category: "other" },
     { date: "17 Mar 2026", title: "Intro to Tailwind CSS",                                  link: "https://youtu.be/YZrRU4ulVRc", videoId: "YZrRU4ulVRc", category: "tl" },
     { date: "26 Mar 2026", title: "Styling Animations with Tailwind & AI for Styling CSS",  link: "https://youtu.be/B5Fnq1A-nwc", videoId: "B5Fnq1A-nwc", category: "tl" },
     { date: "28 Mar 2026", title: "Breakout Room Sprint Review Module 2",                   link: "https://youtu.be/62RxlLrD5OU", videoId: "62RxlLrD5OU", category: "sprint" },
-    
 ];
 
 // Category display order
