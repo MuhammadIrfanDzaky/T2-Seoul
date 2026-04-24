@@ -1562,6 +1562,481 @@ const modules = [
           },
         ]
       },
+      // ── Week 7 ──────────────────────────────────────────────
+      {
+        week: 7,
+        course: { en: "TypeScript & Unit Testing", id: "TypeScript & Unit Testing" },
+        sessions: [
+          // ── Lecture 1 ───────────────────────────────────────────
+          {
+            num: 1, date: null,
+            title: "TypeScript Basics",
+            recordingId: null,
+            sections: [
+              {
+                icon: '📘',
+                title: { en: "Introduction to TypeScript", id: "Pengenalan TypeScript" },
+                items: {
+                  en: [
+                    "[[TypeScript]] = a programming language that extends JavaScript by adding static types",
+                    "⭐ TypeScript is a [[superset of JavaScript]] — any valid JS code is also valid TS",
+                    "Introduces static typing, interfaces, and advanced tooling support to the JS ecosystem",
+                    "Used at Microsoft, Google, Airbnb, Stripe — TypeScript is now industry baseline",
+                    "Key benefits: Static Typing, Code Maintainability, Better Tooling, Early Error Detection",
+                  ],
+                  id: [
+                    "[[TypeScript]] = bahasa pemrograman yang memperluas JavaScript dengan menambahkan tipe statis",
+                    "⭐ TypeScript adalah [[superset dari JavaScript]] — semua kode JS yang valid juga valid di TS",
+                    "Memperkenalkan static typing, interfaces, dan dukungan tooling canggih ke ekosistem JS",
+                    "Digunakan di Microsoft, Google, Airbnb, Stripe — TypeScript kini sudah jadi standar industri",
+                    "Manfaat utama: Static Typing, Maintainability, Tooling lebih baik, Deteksi error lebih awal",
+                  ]
+                }
+              },
+              {
+                icon: '⚖️',
+                title: { en: "TypeScript vs JavaScript", id: "TypeScript vs JavaScript" },
+                items: {
+                  en: [
+                    "Type System: JS is dynamically typed (runtime errors) — TS is statically typed (compile-time checks)",
+                    "Code Structure: TS adds interfaces, enums, and decorators on top of standard JS",
+                    "Tooling: TS provides intelligent autocompletion and type checking in IDEs like VS Code",
+                    "Compatibility: TS must be [[transpiled]] to JS before running in a browser",
+                    "Use Cases: TS is widely used in Angular, NestJS — ideal for large-scale applications",
+                    "⚠️ JS suits smaller or flexible projects — TS excels when code organization is crucial",
+                  ],
+                  id: [
+                    "Type System: JS bertipe dinamis (error runtime) — TS bertipe statis (pengecekan compile-time)",
+                    "Code Structure: TS menambahkan interfaces, enums, dan decorators di atas JS standar",
+                    "Tooling: TS menyediakan autocompletion dan type checking cerdas di IDE seperti VS Code",
+                    "Compatibility: TS harus di-[[transpile]] ke JS sebelum bisa dijalankan di browser",
+                    "Use Cases: TS banyak digunakan di Angular, NestJS — ideal untuk aplikasi skala besar",
+                    "⚠️ JS cocok untuk proyek kecil/fleksibel — TS unggul ketika organisasi kode sangat penting",
+                  ]
+                }
+              },
+              {
+                icon: '⚙️',
+                title: { en: "Installation & Setup", id: "Instalasi & Pengaturan" },
+                items: {
+                  en: [
+                    "Install TypeScript globally: `npm install -g typescript`",
+                    "Verify the installation: `tsc --version`",
+                    "Compile a `.ts` file to JS: `tsc script.ts` — generates a corresponding `script.js`",
+                    "⭐ VS Code provides excellent TypeScript support out of the box — no extra plugin needed",
+                    "Use `tsconfig.json` to configure compiler options (target version, strict mode, module system, etc.)",
+                  ],
+                  id: [
+                    "Install TypeScript secara global: `npm install -g typescript`",
+                    "Verifikasi instalasi: `tsc --version`",
+                    "Compile file `.ts` ke JS: `tsc script.ts` — menghasilkan `script.js` yang sesuai",
+                    "⭐ VS Code menyediakan dukungan TypeScript yang sangat baik secara bawaan — tanpa plugin tambahan",
+                    "Gunakan `tsconfig.json` untuk mengonfigurasi opsi compiler (target versi, strict mode, module system, dll.)",
+                  ]
+                }
+              },
+              {
+                icon: '🏷️',
+                title: { en: "Type Annotations & Inference", id: "Anotasi Tipe & Inferensi" },
+                items: {
+                  en: [
+                    "[[Type annotation]] — place `:` followed by the type after the identifier: `let counter: number;`",
+                    "Annotate and initialize together: `let name: string = 'Yuhuu'; let age: number = 25;`",
+                    "⚠️ Assigning an incompatible type raises a compile-time error (ts2322)",
+                    "[[Type inference]] — TS automatically infers type from initial value: `let x = 0` → inferred as `number`",
+                    "Inference vs annotation: inference is implicit; annotation is explicit and makes intent clear",
+                    "⭐ Always annotate return types of public/exported functions for clarity and safety",
+                  ],
+                  id: [
+                    "[[Anotasi tipe]] — taruh `:` diikuti tipe setelah identifier: `let counter: number;`",
+                    "Anotasi dan inisialisasi sekaligus: `let name: string = 'Yuhuu'; let age: number = 25;`",
+                    "⚠️ Menetapkan tipe yang tidak kompatibel menghasilkan compile-time error (ts2322)",
+                    "[[Inferensi tipe]] — TS secara otomatis menyimpulkan tipe dari nilai awal: `let x = 0` → disimpulkan sebagai `number`",
+                    "Inferensi vs anotasi: inferensi bersifat implisit; anotasi bersifat eksplisit dan membuat maksud lebih jelas",
+                    "⭐ Selalu beri anotasi tipe return pada fungsi publik/yang diekspor untuk kejelasan dan keamanan",
+                  ]
+                }
+              },
+              {
+                icon: '🔢',
+                title: { en: "Primitive Types & Collections", id: "Tipe Primitif & Koleksi" },
+                items: {
+                  en: [
+                    "`number` — decimal, binary (`0B`), hex (`0X`), octal (`0o`); use `bigint` for very large integers",
+                    "`string` — single/double quotes, or template literals with backticks for interpolation",
+                    "`boolean` — `true` or `false`; commonly used for flags and conditional logic",
+                    "`object` — all non-primitive values; declare shape inline or use an interface",
+                    "Arrays: `let names: string[] = [...]` — type-safe, prevents adding incompatible values",
+                    "Tuples: `let skill: [string, number]` — fixed length, fixed types, order matters",
+                    "Union: `let result: number | string` — variable can hold one of several specified types",
+                    "❌ Avoid `any` — it bypasses type checking; prefer `unknown` when type is truly uncertain",
+                  ],
+                  id: [
+                    "`number` — desimal, biner (`0B`), hex (`0X`), oktal (`0o`); gunakan `bigint` untuk integer sangat besar",
+                    "`string` — kutip tunggal/ganda, atau template literal dengan backtick untuk interpolasi",
+                    "`boolean` — `true` atau `false`; umum digunakan untuk flag dan logika kondisional",
+                    "`object` — semua nilai non-primitif; deklarasikan bentuk secara inline atau gunakan interface",
+                    "Arrays: `let names: string[] = [...]` — type-safe, mencegah penambahan nilai tidak kompatibel",
+                    "Tuples: `let skill: [string, number]` — panjang tetap, tipe tetap, urutan penting",
+                    "Union: `let result: number | string` — variabel dapat menyimpan salah satu dari beberapa tipe",
+                    "❌ Hindari `any` — melewati pemeriksaan tipe; gunakan `unknown` saat tipe benar-benar tidak pasti",
+                  ]
+                }
+              },
+              {
+                icon: '🔧',
+                title: { en: "Functions in TypeScript", id: "Fungsi dalam TypeScript" },
+                items: {
+                  en: [
+                    "Syntax: `function add(a: number, b: number): number { return a + b; }`",
+                    "TS verifies argument count and types at every function call site",
+                    "Void return: `function log(msg: string): void { console.log(msg); }` — function returns nothing",
+                    "Optional param: `c?: number` — must come after all required parameters",
+                    "Default param: `function fn(price: number, discount = 0): number` — implicitly optional",
+                    "Rest param: `function total(...nums: number[]): number` — one rest param, must be last",
+                    "⭐ Function inference: TS infers return type from `return` statements — but prefer explicit annotation",
+                  ],
+                  id: [
+                    "Sintaks: `function add(a: number, b: number): number { return a + b; }`",
+                    "TS memverifikasi jumlah dan tipe argumen di setiap pemanggilan fungsi",
+                    "Return void: `function log(msg: string): void { console.log(msg); }` — fungsi tidak mengembalikan nilai",
+                    "Parameter opsional: `c?: number` — harus datang setelah semua parameter wajib",
+                    "Parameter default: `function fn(price: number, discount = 0): number` — implisit opsional",
+                    "Rest parameter: `function total(...nums: number[]): number` — satu rest param, harus di akhir",
+                    "⭐ Function inference: TS menyimpulkan tipe return dari pernyataan `return` — tapi lebih baik anotasi eksplisit",
+                  ]
+                }
+              },
+            ]
+          },
+          // ── Lecture 2 ───────────────────────────────────────────
+          {
+            num: 2, date: null,
+            title: "TypeScript Features and Paradigms 1",
+            recordingId: null,
+            sections: [
+              {
+                icon: '🔐',
+                title: { en: "Static Typing & Type Safety", id: "Static Typing & Keamanan Tipe" },
+                items: {
+                  en: [
+                    "[[Static typing]] = define types of variables, function params, and return values at compile time",
+                    "TS catches type errors during development — before the code ever executes",
+                    "Unlike JS which only surfaces errors at runtime (when the app is already running)",
+                    "⭐ Think of TypeScript as a safety net — it ensures your code is robust and avoids common pitfalls",
+                  ],
+                  id: [
+                    "[[Static typing]] = mendefinisikan tipe variabel, parameter fungsi, dan nilai return saat compile time",
+                    "TS menangkap error tipe selama pengembangan — sebelum kode pernah dieksekusi",
+                    "Berbeda dengan JS yang hanya menampilkan error saat runtime (ketika aplikasi sudah berjalan)",
+                    "⭐ Anggap TypeScript sebagai jaring pengaman — memastikan kode Anda kuat dan menghindari jebakan umum",
+                  ]
+                }
+              },
+              {
+                icon: '📦',
+                title: { en: "TypeScript Data Types", id: "Tipe Data TypeScript" },
+                items: {
+                  en: [
+                    "Supported types: `number`, `string`, `boolean`, `array`, and custom types via interfaces",
+                    "Object inline: `let person: { name: string; age: number } = { name: 'Bob', age: 30 }`",
+                    "Array: `let hobbies: string[] = ['reading', 'coding', 'traveling']`",
+                    "⭐ Data types act as labeled containers — prevent unexpected values and enhance readability",
+                    "Type inference: `let message = 'Hello'` → TS infers type as `string` automatically",
+                    "Type annotation: `let count: number = 10` → you explicitly declare the type",
+                  ],
+                  id: [
+                    "Tipe yang didukung: `number`, `string`, `boolean`, `array`, dan tipe kustom via interface",
+                    "Objek inline: `let person: { name: string; age: number } = { name: 'Bob', age: 30 }`",
+                    "Array: `let hobbies: string[] = ['reading', 'coding', 'traveling']`",
+                    "⭐ Tipe data seperti wadah berlabel — mencegah nilai tak terduga dan meningkatkan keterbacaan",
+                    "Type inference: `let message = 'Hello'` → TS menyimpulkan tipe sebagai `string` secara otomatis",
+                    "Type annotation: `let count: number = 10` → Anda secara eksplisit mendeklarasikan tipe",
+                  ]
+                }
+              },
+              {
+                icon: '🔧',
+                title: { en: "Functions & Signatures", id: "Fungsi & Signature" },
+                items: {
+                  en: [
+                    "Function signature defines: [[name]], [[parameters]] (with types), and [[return type]]",
+                    "`function add(x: number, y: number): number { return x + y; }` — fully typed",
+                    "The `: number` after the closing parenthesis specifies the return type",
+                    "Typed date param: `function formatDate(date: Date): string { return date.toISOString(); }`",
+                    "⭐ Function signatures improve readability, catch errors early, and serve as clear documentation",
+                  ],
+                  id: [
+                    "Function signature mendefinisikan: [[nama]], [[parameter]] (dengan tipe), dan [[tipe return]]",
+                    "`function add(x: number, y: number): number { return x + y; }` — sepenuhnya bertype",
+                    "`: number` setelah kurung tutup menentukan tipe return",
+                    "Param date bertype: `function formatDate(date: Date): string { return date.toISOString(); }`",
+                    "⭐ Function signature meningkatkan keterbacaan, menangkap error lebih awal, dan berfungsi sebagai dokumentasi jelas",
+                  ]
+                }
+              },
+              {
+                icon: '📋',
+                title: { en: "Interfaces", id: "Interface" },
+                items: {
+                  en: [
+                    "[[Interface]] = a contract that defines the structure objects must follow",
+                    "`interface Person { name: string; age: number; }` — all Person objects must have these properties",
+                    "Optional property: `email?: string` — the object is still valid even if `email` is not provided",
+                    "Interfaces enforce structure, promote consistency, and facilitate team collaboration",
+                    "⭐ Use interfaces to clearly define expectations for object shapes and function parameters",
+                  ],
+                  id: [
+                    "[[Interface]] = kontrak yang mendefinisikan struktur yang harus diikuti objek",
+                    "`interface Person { name: string; age: number; }` — semua objek Person harus memiliki properti ini",
+                    "Properti opsional: `email?: string` — objek tetap valid meskipun `email` tidak disediakan",
+                    "Interface memaksakan struktur, mendorong konsistensi, dan memfasilitasi kolaborasi tim",
+                    "⭐ Gunakan interface untuk mendefinisikan ekspektasi bentuk objek dan parameter fungsi dengan jelas",
+                  ]
+                }
+              },
+              {
+                icon: '🔗',
+                title: { en: "Union & Intersection Types", id: "Union & Intersection Type" },
+                items: {
+                  en: [
+                    "[[Union type]] `|` — variable can hold one of several types: `let id: number | string`",
+                    "Useful when a value can legitimately be one of several types (e.g. ID as number or string)",
+                    "[[Intersection type]] `&` — combines multiple types: object must satisfy ALL of them",
+                    "`type EmployeePerson = Person & Employee` — must have all properties of both interfaces",
+                    "⭐ Union types add flexibility; intersection types enforce combined structural contracts",
+                  ],
+                  id: [
+                    "[[Union type]] `|` — variabel dapat menyimpan salah satu dari beberapa tipe: `let id: number | string`",
+                    "Berguna saat nilai bisa sah berupa beberapa tipe (mis. ID sebagai number atau string)",
+                    "[[Intersection type]] `&` — menggabungkan beberapa tipe: objek harus memenuhi SEMUA tipe",
+                    "`type EmployeePerson = Person & Employee` — harus memiliki semua properti dari kedua interface",
+                    "⭐ Union type menambah fleksibilitas; intersection type memaksakan kontrak struktural gabungan",
+                  ]
+                }
+              },
+              {
+                icon: '⏳',
+                title: { en: "Async Programming", id: "Pemrograman Asinkron" },
+                items: {
+                  en: [
+                    "[[async/await]] simplifies asynchronous programming — makes async code look synchronous",
+                    "`async function fetchData(): Promise<string> { const data = await fetchFromAPI(); return data; }`",
+                    "The `await` keyword pauses function execution until the Promise resolves",
+                    "Async programming is like waiting for a bus — you don't block traffic, you continue other tasks",
+                    "⭐ async/await is more readable and maintainable than raw callbacks or .then() chaining",
+                  ],
+                  id: [
+                    "[[async/await]] menyederhanakan pemrograman asinkron — membuat kode async terlihat sinkron",
+                    "`async function fetchData(): Promise<string> { const data = await fetchFromAPI(); return data; }`",
+                    "Kata kunci `await` menghentikan eksekusi fungsi sampai Promise selesai",
+                    "Pemrograman async seperti menunggu bus — Anda tidak menghalangi jalan, melanjutkan aktivitas lain",
+                    "⭐ async/await lebih mudah dibaca dan dipelihara dibanding callback mentah atau .then() chaining",
+                  ]
+                }
+              },
+            ]
+          },
+          // ── Lecture 3 ───────────────────────────────────────────
+          {
+            num: 3, date: null,
+            title: "TypeScript Features and Paradigms 2",
+            recordingId: null,
+            sections: [
+              {
+                icon: '📁',
+                title: { en: "Module Resolution", id: "Resolusi Modul" },
+                items: {
+                  en: [
+                    "[[Module resolution]] = the process TypeScript uses to find and load external modules",
+                    "`import { someFunction } from './myModule'` — import from a local module file",
+                    "Two strategies: [[Node]] (follows Node.js resolution) and [[Classic]] (TypeScript's original)",
+                    "⭐ Use `\"moduleResolution\": \"node\"` in `tsconfig.json` for most modern projects",
+                    "Enables organizing code into separate files: routes, controllers, models — each as its own module",
+                  ],
+                  id: [
+                    "[[Resolusi modul]] = proses yang digunakan TypeScript untuk menemukan dan memuat modul eksternal",
+                    "`import { someFunction } from './myModule'` — import dari file modul lokal",
+                    "Dua strategi: [[Node]] (mengikuti resolusi Node.js) dan [[Classic]] (strategi asli TypeScript)",
+                    "⭐ Gunakan `\"moduleResolution\": \"node\"` di `tsconfig.json` untuk sebagian besar proyek modern",
+                    "Memungkinkan pengorganisasian kode ke file terpisah: routes, controllers, models — masing-masing sebagai modul sendiri",
+                  ]
+                }
+              },
+              {
+                icon: '🎯',
+                title: { en: "Enums", id: "Enum" },
+                items: {
+                  en: [
+                    "[[Enum]] = a set of named constant values representing a distinct set of possibilities",
+                    "Numeric enum: `enum Direction { up = 1, down, left, right }` — auto-increments from starting value",
+                    "Enum with switch: pairs perfectly with `switch` statements for exhaustive case handling",
+                    "String enum: `enum LogLevel { Error = 'ERROR', Warn = 'WARN' }` — human-readable in logs",
+                    "⭐ Enums prevent 'magic numbers', improve code readability and maintainability",
+                    "Think of enums like a menu — each option is a specific, distinct, and named choice",
+                  ],
+                  id: [
+                    "[[Enum]] = sekumpulan nilai konstanta bernama yang merepresentasikan kemungkinan yang berbeda",
+                    "Numeric enum: `enum Direction { up = 1, down, left, right }` — auto-increment dari nilai awal",
+                    "Enum dengan switch: berpasangan sempurna dengan pernyataan `switch` untuk penanganan case yang exhaustive",
+                    "String enum: `enum LogLevel { Error = 'ERROR', Warn = 'WARN' }` — mudah dibaca di log",
+                    "⭐ Enum mencegah 'angka ajaib', meningkatkan keterbacaan dan pemeliharaan kode",
+                    "Enum seperti menu — setiap opsi adalah pilihan yang spesifik, berbeda, dan bernama",
+                  ]
+                }
+              },
+              {
+                icon: '✅',
+                title: { en: "TypeScript Best Practices", id: "Praktik Terbaik TypeScript" },
+                items: {
+                  en: [
+                    "1. Use Strict Mode — add `\"strict\": true` in `tsconfig.json` to enable strict type-checking",
+                    "2. Type every variable and function — improves readability and IDE tooling support",
+                    "3. Use interfaces/types for data structures — clear, reusable, and self-documenting blueprints",
+                    "❌ Avoid `any` — it weakens TypeScript's type system; use `unknown` + type guards instead",
+                    "4. Use union types and enums — makes code more expressive and self-documenting",
+                    "5. Use modules to organize code — prevents naming collisions and improves scalability",
+                    "6. Use `async`/`await` for async operations — cleaner than callbacks or promise chains",
+                    "7. Use descriptive names — `totalPrice` and `calculateArea` not `x` and `fn`",
+                    "8. Follow formatting standards — use Prettier or ESLint to enforce consistency across team",
+                    "⭐ Strict mode enables `strictNullChecks` — `null` is not assignable to `string` unless `string | null`",
+                  ],
+                  id: [
+                    "1. Gunakan Strict Mode — tambahkan `\"strict\": true` di `tsconfig.json` untuk aktifkan strict type-checking",
+                    "2. Beri tipe pada setiap variabel dan fungsi — meningkatkan keterbacaan dan dukungan IDE",
+                    "3. Gunakan interface/types untuk struktur data — blueprint yang jelas, dapat digunakan ulang, dan mendokumentasikan diri",
+                    "❌ Hindari `any` — melemahkan sistem tipe TS; gunakan `unknown` + type guards sebagai gantinya",
+                    "4. Gunakan union types dan enum — membuat kode lebih ekspresif dan mendokumentasikan diri",
+                    "5. Gunakan modul untuk mengorganisir kode — mencegah collision nama dan meningkatkan skalabilitas",
+                    "6. Gunakan `async`/`await` untuk operasi async — lebih bersih daripada callback atau promise chain",
+                    "7. Gunakan nama yang deskriptif — `totalPrice` dan `calculateArea` bukan `x` dan `fn`",
+                    "8. Ikuti standar format — gunakan Prettier atau ESLint untuk memaksakan konsistensi di seluruh tim",
+                    "⭐ Strict mode mengaktifkan `strictNullChecks` — `null` tidak bisa ditetapkan ke `string` kecuali `string | null`",
+                  ]
+                }
+              },
+            ]
+          },
+          // ── Lecture 4 ───────────────────────────────────────────
+          {
+            num: 4, date: null,
+            title: "Introduction to Unit Testing",
+            recordingId: null,
+            sections: [
+              {
+                icon: '🧪',
+                title: { en: "What is Software Testing?", id: "Apa itu Software Testing?" },
+                items: {
+                  en: [
+                    "[[Software testing]] = evaluating and verifying that software does what it is supposed to do",
+                    "Real-world failures: Cyberpunk 2077 (bugs → massive refunds), Boeing 737 Max (fatal software errors)",
+                    "Untested software is not just a technical problem — it has business, legal, and human consequences",
+                    "Testing types: Unit (Jest), Integration (Selenium), System, Load (JMeter), Error (Gremlin), Automation (CI/CD)",
+                  ],
+                  id: [
+                    "[[Software testing]] = mengevaluasi dan memverifikasi bahwa perangkat lunak melakukan apa yang seharusnya",
+                    "Kegagalan nyata: Cyberpunk 2077 (bug → refund massal), Boeing 737 Max (error software fatal)",
+                    "Perangkat lunak yang tidak diuji bukan hanya masalah teknis — ada konsekuensi bisnis, hukum, dan manusia",
+                    "Jenis testing: Unit (Jest), Integration (Selenium), System, Load (JMeter), Error (Gremlin), Automation (CI/CD)",
+                  ]
+                }
+              },
+              {
+                icon: '🔬',
+                title: { en: "Unit Testing", id: "Unit Testing" },
+                items: {
+                  en: [
+                    "[[Unit testing]] = tests the smallest testable part of an app (function, method, class) in isolation",
+                    "Isolation: use mock objects or stubs to simulate the behavior of external dependencies",
+                    "Automated: executed by a testing framework without manual intervention",
+                    "Fast execution: completes in milliseconds or seconds — provides rapid feedback during development",
+                    "Repeatable: produces consistent results every time — if code hasn't changed, tests always pass",
+                    "⭐ Unit tests catch input/output and logic-based errors before they reach production",
+                  ],
+                  id: [
+                    "[[Unit testing]] = menguji bagian terkecil yang dapat diuji (fungsi, method, kelas) secara terisolasi",
+                    "Isolasi: gunakan mock objects atau stubs untuk menyimulasikan perilaku dependensi eksternal",
+                    "Otomatis: dijalankan oleh framework pengujian tanpa intervensi manual",
+                    "Eksekusi cepat: selesai dalam milidetik atau detik — memberikan umpan balik cepat saat pengembangan",
+                    "Dapat diulang: menghasilkan hasil konsisten setiap kali — jika kode belum berubah, test selalu lulus",
+                    "⭐ Unit test menangkap error input/output dan logika sebelum mencapai produksi",
+                  ]
+                }
+              },
+              {
+                icon: '📋',
+                title: { en: "Testing Strategies & Benefits", id: "Strategi & Manfaat Pengujian" },
+                items: {
+                  en: [
+                    "Efficient bug discovery — pinpoint exact error location; detect regression when code changes",
+                    "[[Living documentation]] — unit tests show other developers what behaviors are expected",
+                    "Logic checks: does the system perform correct calculations and follow the right code paths?",
+                    "Boundary checks: how does the system respond to typical, edge case, or invalid inputs?",
+                    "Error handling: when inputs have errors, does the software crash or handle gracefully?",
+                    "Object-oriented checks: if persistent object state is changed, is it updated correctly?",
+                  ],
+                  id: [
+                    "Penemuan bug efisien — tentukan lokasi error yang tepat; deteksi regresi saat kode berubah",
+                    "[[Dokumentasi hidup]] — unit test menunjukkan ke developer lain perilaku apa yang diharapkan",
+                    "Logic checks: apakah sistem melakukan kalkulasi yang benar dan mengikuti jalur kode yang tepat?",
+                    "Boundary checks: bagaimana sistem merespons input biasa, edge case, atau input tidak valid?",
+                    "Error handling: ketika input memiliki error, apakah software crash atau menangani dengan baik?",
+                    "Object-oriented checks: jika state objek persisten berubah, apakah diperbarui dengan benar?",
+                  ]
+                }
+              },
+              {
+                icon: '🔄',
+                title: { en: "TDD & BDD", id: "TDD & BDD" },
+                items: {
+                  en: [
+                    "[[TDD]] (Test-Driven Development) = write tests BEFORE writing the actual code",
+                    "TDD flow: write failing test → implement code to pass → refactor safely",
+                    "[[BDD]] (Behavior-Driven Development) = tests written in human-readable Given-When-Then format",
+                    "BDD involves the whole team (devs, QA, product) — not just developers",
+                    "TDD: code-level, developers only — BDD: behavior-level, entire team",
+                    "⭐ TDD ensures code meets requirements and provides a safety net for refactoring",
+                    "⚠️ TDD = build the thing right; BDD = build the right thing",
+                  ],
+                  id: [
+                    "[[TDD]] (Test-Driven Development) = tulis test SEBELUM menulis kode yang sebenarnya",
+                    "Alur TDD: tulis test yang gagal → implementasikan kode agar lulus → refactor dengan aman",
+                    "[[BDD]] (Behavior-Driven Development) = test ditulis dalam format Given-When-Then yang mudah dibaca manusia",
+                    "BDD melibatkan seluruh tim (dev, QA, product) — tidak hanya developer",
+                    "TDD: level kode, hanya developer — BDD: level perilaku, seluruh tim",
+                    "⭐ TDD memastikan kode memenuhi persyaratan dan memberikan jaring pengaman untuk refactoring",
+                    "⚠️ TDD = bangun dengan benar; BDD = bangun yang benar",
+                  ]
+                }
+              },
+              {
+                icon: '🃏',
+                title: { en: "Testing with Jest", id: "Pengujian dengan Jest" },
+                items: {
+                  en: [
+                    "[[Jest]] = JavaScript testing framework focused on simplicity; works with TS, React, Angular, Vue, Node",
+                    "Key features: zero configuration, built-in parallel test runner, automatic mocking, snapshot testing",
+                    "Setup: `npm install jest @types/jest ts-jest --save-dev` then run with `npx jest`",
+                    "Test structure: `test('description', () => { /* assertion logic */ })`",
+                    "Assertions: `expect(val).toBe(expected)` / `.toEqual(expected)` / `.not.toBe(expected)`",
+                    "Lifecycle: `beforeAll(fn)` — runs once before all tests; `afterAll(fn)` — runs once after all tests",
+                    "⭐ Jest provides code coverage reports — shows exactly which parts of your code are tested",
+                  ],
+                  id: [
+                    "[[Jest]] = framework pengujian JavaScript yang fokus pada kesederhanaan; bekerja dengan TS, React, Angular, Vue, Node",
+                    "Fitur utama: zero konfigurasi, test runner paralel bawaan, automatic mocking, snapshot testing",
+                    "Setup: `npm install jest @types/jest ts-jest --save-dev` lalu jalankan dengan `npx jest`",
+                    "Struktur test: `test('deskripsi', () => { /* logika assertion */ })`",
+                    "Assertions: `expect(val).toBe(expected)` / `.toEqual(expected)` / `.not.toBe(expected)`",
+                    "Lifecycle: `beforeAll(fn)` — dijalankan sekali sebelum semua test; `afterAll(fn)` — setelah semua test",
+                    "⭐ Jest menyediakan laporan code coverage — menunjukkan bagian kode mana persis yang telah diuji",
+                  ]
+                }
+              },
+            ]
+          },
+        ]
+      },
     ]
   },
 ];
@@ -1677,9 +2152,9 @@ function selectLecture(weekIdx, sessionIdx) {
       : '';
     const recBtn = session.recordingId
       ? `<a href="recordings.html" class="btn btn-sm" style="text-decoration:none;display:inline-flex;align-items:center;gap:6px">
-           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="13" height="13"><path d="M8 5v14l11-7z"/></svg>
-           ${i18n[lang]['materi.view']}
-         </a>`
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="13" height="13"><path d="M8 5v14l11-7z"/></svg>
+          ${i18n[lang]['materi.view']}
+        </a>`
       : '';
     panel.innerHTML = `<div class="materi-content-inner">
       <div class="materi-lecture-header">
