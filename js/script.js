@@ -14,6 +14,7 @@ const recordings = [
     { date: "11 Apr 2026", title: "Beginner Javascript",                                    link: "https://youtu.be/oo09sYmr2Y0", videoId: "oo09sYmr2Y0", category: "tl" },
     { date: "18 Apr 2026", title: "Advanced Javascript",                                    link: "https://youtu.be/jfHzwg6pIZw", videoId: "jfHzwg6pIZw", category: "tl" },
     { date: "25 Apr 2026", title: "Typescript",                                             link: "https://youtu.be/qQ0XXDeGfW8", videoId: "qQ0XXDeGfW8", category: "tl" },
+    { date: "28 Apr 2026", title: "Deployment #1",                                          link: "https://youtu.be/QOecSfsCqXI", videoId: "QOecSfsCqXI", category: "tl" },
 ];
 
 // Category display order
