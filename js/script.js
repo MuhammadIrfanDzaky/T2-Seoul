@@ -10,12 +10,13 @@ const recordings = [
     { date: "17 Mar 2026", title: "Intro to Tailwind CSS",                                  link: "https://youtu.be/YZrRU4ulVRc", videoId: "YZrRU4ulVRc", category: "tl" },
     { date: "26 Mar 2026", title: "Styling Animations with Tailwind & AI for Styling CSS",  link: "https://youtu.be/B5Fnq1A-nwc", videoId: "B5Fnq1A-nwc", category: "tl" },
     { date: "28 Mar 2026", title: "Breakout Room Sprint Review Module 2",                   link: "https://youtu.be/62RxlLrD5OU", videoId: "62RxlLrD5OU", category: "sprint" },
-    { date: "31 Mar 2026", title: "Assymetrical Grid",                                      link: "https://youtu.be/eETFgE8DQ20", videoId: "eETFgE8DQ20", category: "other" },
+    { date: "31 Mar 2026", title: "Asymmetrical Grid",                                      link: "https://youtu.be/eETFgE8DQ20", videoId: "eETFgE8DQ20", category: "other" },
     { date: "11 Apr 2026", title: "Beginner Javascript",                                    link: "https://youtu.be/oo09sYmr2Y0", videoId: "oo09sYmr2Y0", category: "tl" },
     { date: "18 Apr 2026", title: "Advanced Javascript",                                    link: "https://youtu.be/jfHzwg6pIZw", videoId: "jfHzwg6pIZw", category: "tl" },
     { date: "25 Apr 2026", title: "Typescript",                                             link: "https://youtu.be/qQ0XXDeGfW8", videoId: "qQ0XXDeGfW8", category: "tl" },
     { date: "28 Apr 2026", title: "Deployment",                                             link: "https://youtu.be/QOecSfsCqXI", videoId: "QOecSfsCqXI", category: "tl" },
     { date: "30 Apr 2026", title: "AI Integration",                                         link: "https://youtu.be/e0krxifHySQ", videoId: "e0krxifHySQ", category: "tl" },
+    { date: "02 May 2026", title: "Breakout Room Sprint Review Module 3",                   link: "https://youtu.be/0_O_p-hqAME", videoId: "0_O_p-hqAME", category: "tl" },
 ];
 
 // Category display order
