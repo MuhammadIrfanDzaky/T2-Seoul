@@ -19,6 +19,7 @@ const recordings = [
     { date: "02 May 2026", title: "Breakout Room Sprint Review Module 3",                   link: "https://youtu.be/0_O_p-hqAME", videoId: "0_O_p-hqAME", category: "sprint" },
     { date: "16 May 2026", title: "Breakout Room Sprint Review Milestone 2",                link: "https://youtu.be/tYSRMf3nDDw", videoId: "tYSRMf3nDDw", category: "sprint" },
     { date: "16 May 2026", title: "Breakout Room CRACK Project Preparation",                link: "https://youtu.be/SLLndRkZAlo", videoId: "SLLndRkZAlo", category: "sprint" },
+    { date: "26 May 2026", title: "Introduction to React and Next.js Basics",               link: "https://youtu.be/bA7ML4kzt6Y", videoId: "bA7ML4kzt6Y", category: "sprint" },
 ];
 
 // Category display order
