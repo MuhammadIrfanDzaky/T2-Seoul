@@ -1,7 +1,5 @@
 # Panduan Lengkap: JavaScript Control Flow
 
----
-
 ## 1. JavaScript Control Flow
 
 Control Flow adalah cara mengatur alur eksekusi kode di JavaScript (if-else, loop, function, error handling, dll).

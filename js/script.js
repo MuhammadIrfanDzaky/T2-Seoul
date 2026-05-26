@@ -17,6 +17,7 @@ const recordings = [
     { date: "28 Apr 2026", title: "Deployment",                                             link: "https://youtu.be/QOecSfsCqXI", videoId: "QOecSfsCqXI", category: "tl" },
     { date: "30 Apr 2026", title: "AI Integration",                                         link: "https://youtu.be/e0krxifHySQ", videoId: "e0krxifHySQ", category: "tl" },
     { date: "02 May 2026", title: "Breakout Room Sprint Review Module 3",                   link: "https://youtu.be/0_O_p-hqAME", videoId: "0_O_p-hqAME", category: "sprint" },
+    { date: "16 May 2026", title: "Breakout Room Sprint Review Milestone 2",                link: "https://youtu.be/tYSRMf3nDDw", videoId: "tYSRMf3nDDw", category: "sprint" },
 ];
 
 // Category display order
