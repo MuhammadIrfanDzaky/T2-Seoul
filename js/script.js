@@ -21,7 +21,8 @@ const recordings = [
     { date: "16 May 2026", title: "Breakout Room CRACK Project Preparation",                            link: "https://youtu.be/SLLndRkZAlo", videoId: "SLLndRkZAlo", category: "sprint" },
     { date: "26 May 2026", title: "Introduction to React and Next.js Basics",                           link: "https://youtu.be/bA7ML4kzt6Y", videoId: "bA7ML4kzt6Y", category: "tl" },
     { date: "30 May 2026", title: "Next.js Events, Form, State, and useEffect",                         link: "https://youtu.be/YXloZVYLvI8", videoId: "YXloZVYLvI8", category: "tl" },
-    { date: "02 Jun 2026", title: "Typescript Foundations in Next.js & Next.js Components and Routing", link: "https://youtu.be/J4s5S3_Br-I", videoId: "J4s5S3_Br-I", category: "tl" }
+    { date: "02 Jun 2026", title: "Typescript Foundations in Next.js & Next.js Components and Routing", link: "https://youtu.be/J4s5S3_Br-I", videoId: "J4s5S3_Br-I", category: "tl" },
+    { date: "04 Jun 2026", title: "Form and CRUD in Next.js",                                           link: "https://youtu.be/UyOvl2gshCs", videoId: "UyOvl2gshCs", category: "tl" }
 ];
 
 // Category display order
