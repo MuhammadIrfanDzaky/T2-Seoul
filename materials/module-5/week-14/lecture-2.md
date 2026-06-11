@@ -2,8 +2,6 @@
 
 ## Server-side Rendering
 
----
-
 ## How SSR Implemented - App Router - New Ways
 
 ```tsx
