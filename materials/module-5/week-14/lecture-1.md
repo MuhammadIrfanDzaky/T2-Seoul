@@ -1,12 +1,4 @@
-# Lecture 1 - Next.js Data Fetching Fundamentals
-
-![Title Slide](attachments/image.png)
-
-## The Building Blocks: Fetching and Rendering
-
----
-
-## Fetching
+# Fetching
 
 **Definition**: Fetching is the process of **retrieving data**.
 

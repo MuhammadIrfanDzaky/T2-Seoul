@@ -1,7 +1,3 @@
-**Here is the full transcribed content** from the latest set of slides, formatted as clean Markdown:
-
----
-
 # Advanced Static Generation & Advanced Client-side Data Fetching
 
 ## SSG + ISR
