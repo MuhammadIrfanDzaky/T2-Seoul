@@ -24,8 +24,10 @@ const recordings = [
     { date: "02 Jun 2026", title: "Typescript Foundations in Next.js & Next.js Components and Routing", link: "https://youtu.be/J4s5S3_Br-I", videoId: "J4s5S3_Br-I", category: "tl" },
     { date: "04 Jun 2026", title: "Form and CRUD in Next.js",                                           link: "https://youtu.be/UyOvl2gshCs", videoId: "UyOvl2gshCs", category: "tl" },
     { date: "06 Jun 2026", title: "Breakout Room Sprint Review Module 4",                               link: "https://youtu.be/MPqDLDamEQw", videoId: "MPqDLDamEQw", category: "sprint" },
-    { date: "13 Jun 2026", title: "Next.js Rendering Methods",                                          link: "https://youtu.be/6EggXIVY6lc", videoId: "6EggXIVY6lc", category: "tl" }
-    
+    { date: "13 Jun 2026", title: "Next.js Rendering Methods",                                          link: "https://youtu.be/6EggXIVY6lc", videoId: "6EggXIVY6lc", category: "tl" },
+    { date: "16 Jun 2026", title: "Proxy, Auth and State Management",                                   link: "https://youtu.be/vStO6jx0WRk", videoId: "vStO6jx0WRk", category: "tl" },
+    { date: "18 Jun 2026", title: "Custom Hooks and Performance Improvement",                           link: "https://youtu.be/YvspIfICXIM", videoId: "YvspIfICXIM", category: "tl" },
+    { date: "20 Jun 2026", title: "Breakout Room Sprint Review Module 5",                               link: "https://youtu.be/J3DH32IS5yY", videoId: "J3DH32IS5yY", category: "sprint" }
 ];
 
 // Category display order
