@@ -27,7 +27,8 @@ const recordings = [
     { date: "13 Jun 2026", title: "Next.js Rendering Methods",                                          link: "https://youtu.be/6EggXIVY6lc", videoId: "6EggXIVY6lc", category: "tl" },
     { date: "16 Jun 2026", title: "Proxy, Auth and State Management",                                   link: "https://youtu.be/vStO6jx0WRk", videoId: "vStO6jx0WRk", category: "tl" },
     { date: "18 Jun 2026", title: "Custom Hooks and Performance Improvement",                           link: "https://youtu.be/YvspIfICXIM", videoId: "YvspIfICXIM", category: "tl" },
-    { date: "20 Jun 2026", title: "Breakout Room Sprint Review Module 5",                               link: "https://youtu.be/J3DH32IS5yY", videoId: "J3DH32IS5yY", category: "sprint" }
+    { date: "20 Jun 2026", title: "Breakout Room Sprint Review Module 5",                               link: "https://youtu.be/J3DH32IS5yY", videoId: "J3DH32IS5yY", category: "sprint" },
+    { date: "04 Jul 2026", title: "Breakout Room Sprint Review Milestone 3",                            link: "https://youtu.be/Ufgtp2pzUh4", videoId: "Ufgtp2pzUh4", category: "sprint" }
 ];
 
 // Category display order
