@@ -28,7 +28,8 @@ const recordings = [
     { date: "16 Jun 2026", title: "Proxy, Auth and State Management",                                   link: "https://youtu.be/vStO6jx0WRk", videoId: "vStO6jx0WRk", category: "tl" },
     { date: "18 Jun 2026", title: "Custom Hooks and Performance Improvement",                           link: "https://youtu.be/YvspIfICXIM", videoId: "YvspIfICXIM", category: "tl" },
     { date: "20 Jun 2026", title: "Breakout Room Sprint Review Module 5",                               link: "https://youtu.be/J3DH32IS5yY", videoId: "J3DH32IS5yY", category: "sprint" },
-    { date: "04 Jul 2026", title: "Breakout Room Sprint Review Milestone 3",                            link: "https://youtu.be/Ufgtp2pzUh4", videoId: "Ufgtp2pzUh4", category: "sprint" }
+    { date: "04 Jul 2026", title: "Breakout Room Sprint Review Milestone 3",                            link: "https://youtu.be/Ufgtp2pzUh4", videoId: "Ufgtp2pzUh4", category: "sprint" },
+    { date: "18 Jul 2026", title: "Database, SQL, NestJS, REST API",                                    link: "https://youtu.be/dJAd5GVAgFM", videoId: "dJAd5GVAgFM", category: "tl" }
 ];
 
 // Category display order
