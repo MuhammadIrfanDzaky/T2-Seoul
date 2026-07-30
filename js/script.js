@@ -29,7 +29,8 @@ const recordings = [
     { date: "18 Jun 2026", title: "Custom Hooks and Performance Improvement",                           link: "https://youtu.be/YvspIfICXIM", videoId: "YvspIfICXIM", category: "tl" },
     { date: "20 Jun 2026", title: "Breakout Room Sprint Review Module 5",                               link: "https://youtu.be/J3DH32IS5yY", videoId: "J3DH32IS5yY", category: "sprint" },
     { date: "04 Jul 2026", title: "Breakout Room Sprint Review Milestone 3",                            link: "https://youtu.be/Ufgtp2pzUh4", videoId: "Ufgtp2pzUh4", category: "sprint" },
-    { date: "18 Jul 2026", title: "Database, SQL, NestJS, REST API",                                    link: "https://youtu.be/dJAd5GVAgFM", videoId: "dJAd5GVAgFM", category: "tl" }
+    { date: "18 Jul 2026", title: "Database, SQL, NestJS, REST API",                                    link: "https://youtu.be/dJAd5GVAgFM", videoId: "dJAd5GVAgFM", category: "tl" },
+    { date: "25 Jul 2026", title: "API Design & Implementation",                                        link: "https://youtu.be/28FsXh4s0w8", videoId: "28FsXh4s0w8", category: "tl" },
 ];
 
 // Category display order
