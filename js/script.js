@@ -31,6 +31,7 @@ const recordings = [
     { date: "04 Jul 2026", title: "Breakout Room Sprint Review Milestone 3",                            link: "https://youtu.be/Ufgtp2pzUh4", videoId: "Ufgtp2pzUh4", category: "sprint" },
     { date: "18 Jul 2026", title: "Database, SQL, NestJS, REST API",                                    link: "https://youtu.be/dJAd5GVAgFM", videoId: "dJAd5GVAgFM", category: "tl" },
     { date: "25 Jul 2026", title: "API Design & Implementation",                                        link: "https://youtu.be/28FsXh4s0w8", videoId: "28FsXh4s0w8", category: "tl" },
+    { date: "01 Agu 2026", title: "Connecting to Database",                                             link: "https://youtu.be/3_h0hgaY6dE", videoId: "3_h0hgaY6dE", category: "tl" },
 ];
 
 // Category display order
