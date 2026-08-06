@@ -32,6 +32,9 @@ const recordings = [
     { date: "18 Jul 2026", title: "Database, SQL, NestJS, REST API",                                    link: "https://youtu.be/dJAd5GVAgFM", videoId: "dJAd5GVAgFM", category: "tl" },
     { date: "25 Jul 2026", title: "API Design & Implementation",                                        link: "https://youtu.be/28FsXh4s0w8", videoId: "28FsXh4s0w8", category: "tl" },
     { date: "01 Agu 2026", title: "Connecting to Database",                                             link: "https://youtu.be/3_h0hgaY6dE", videoId: "3_h0hgaY6dE", category: "tl" },
+    { date: "01 Agu 2026", title: "Breakout Room Milestone-4 Checkpoint",                               link: "https://youtu.be/9HgiMo0Ec6Q", videoId: "9HgiMo0Ec6Q", category: "tl" },
+    { date: "04 Agu 2026", title: "Middleware & dependency Injection",                                  link: "https://youtu.be/noGTMqIAmYg", videoId: "noGTMqIAmYg", category: "tl" },
+    { date: "06 Agu 2026", title: "Auth & Security",                                                    link: "https://youtu.be/OvpOEz1kyt0", videoId: "OvpOEz1kyt0", category: "tl" },
 ];
 
 // Category display order
