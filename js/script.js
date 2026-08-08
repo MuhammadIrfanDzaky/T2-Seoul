@@ -35,6 +35,7 @@ const recordings = [
     { date: "01 Agu 2026", title: "Breakout Room Milestone-4 Checkpoint",                               link: "https://youtu.be/9HgiMo0Ec6Q", videoId: "9HgiMo0Ec6Q", category: "sprint" },
     { date: "04 Agu 2026", title: "Middleware & dependency Injection",                                  link: "https://youtu.be/noGTMqIAmYg", videoId: "noGTMqIAmYg", category: "tl" },
     { date: "06 Agu 2026", title: "Auth & Security",                                                    link: "https://youtu.be/OvpOEz1kyt0", videoId: "OvpOEz1kyt0", category: "tl" },
+    { date: "08 Agu 2026", title: "Breakout Room Sprint Review Module 6-7",                             link: "https://youtu.be/IHyYs4arXu0", videoId: "IHyYs4arXu0", category: "sprint" },
 ];
 
 // Category display order
